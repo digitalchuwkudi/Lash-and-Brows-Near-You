@@ -22,14 +22,14 @@ export default function Footer() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-16 mb-20">
           <div className="col-span-1 lg:col-span-2">
-            <div className="flex items-center mb-8">
+            <div className="flex items-center gap-3 mb-8">
               <img 
                 src="https://i.ibb.co/KjjmHHHC/lash-brows-service-logo-LE-auto-x4.jpg" 
                 alt="Lash & Brows Logo" 
-                className="h-12 w-12 rounded-full object-cover mr-4"
+                className="h-12 w-auto rounded-full"
                 referrerPolicy="no-referrer"
               />
-              <span className="text-3xl font-black tracking-tighter text-brand block">
+              <span className="text-3xl font-black tracking-tighter text-brand">
                 LASH&BROWS
                 <span className="text-white ml-1">NEAR YOU</span>
               </span>

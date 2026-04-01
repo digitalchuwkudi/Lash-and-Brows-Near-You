@@ -1,8 +1,9 @@
 import { motion } from 'motion/react';
 import { Sparkles, Eye, Scissors, Heart, Zap, GraduationCap, ArrowRight } from 'lucide-react';
+import React from 'react';
 
 type ServiceItem = { name: string; price: string; duration?: string };
-type ServiceGroup = { category: string; icon: JSX.Element; items: ServiceItem[] };
+type ServiceGroup = { category: string; icon: React.ReactNode; items: ServiceItem[] };
 
 const services: ServiceGroup[] = [
   {

@@ -19,6 +19,12 @@ export default function Navbar() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-20">
           <div className="flex-shrink-0 flex items-center">
+            <img 
+              src="https://i.ibb.co/KjjmHHHC/lash-brows-service-logo-LE-auto-x4.jpg" 
+              alt="Lash & Brows Logo" 
+              className="h-10 w-10 rounded-full object-cover mr-3"
+              referrerPolicy="no-referrer"
+            />
             <span className="text-2xl font-black tracking-tighter text-brand">
               LASH&BROWS
               <span className="text-gray-900 dark:text-white ml-1">NEAR YOU</span>

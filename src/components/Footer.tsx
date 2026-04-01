@@ -22,14 +22,14 @@ export default function Footer() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-16 mb-20">
           <div className="col-span-1 lg:col-span-2">
-            <div className="flex items-center gap-3 mb-8">
+            <div className="flex items-center gap-2 md:gap-3 mb-8">
               <img 
                 src="https://i.ibb.co/KjjmHHHC/lash-brows-service-logo-LE-auto-x4.jpg" 
                 alt="Lash & Brows Logo" 
-                className="h-12 w-auto rounded-full"
+                className="h-10 md:h-12 w-auto rounded-full"
                 referrerPolicy="no-referrer"
               />
-              <span className="text-3xl font-black tracking-tighter text-brand">
+              <span className="text-xl md:text-2xl font-black tracking-tighter text-brand">
                 LASH&BROWS
                 <span className="text-white ml-1">NEAR YOU</span>
               </span>
@@ -102,7 +102,7 @@ export default function Footer() {
                 </div>
                 <div>
                   <p className="text-white font-bold text-sm uppercase tracking-wide">Phone</p>
-                  <a href="tel:+229190083461" className="text-gray-400 text-sm font-medium hover:text-brand transition-colors block">+229 19 00 83 46</a>
+                  <a href="tel:+2290190083461" className="text-gray-400 text-sm font-medium hover:text-brand transition-colors block">+229 01 90 08 34 61</a>
                 </div>
               </li>
               <li className="flex items-start space-x-4">
@@ -111,7 +111,7 @@ export default function Footer() {
                 </div>
                 <div>
                   <p className="text-white font-bold text-sm uppercase tracking-wide">WhatsApp</p>
-                  <a href="https://wa.me/229190083461" target="_blank" rel="noopener noreferrer" className="text-gray-400 text-sm font-medium hover:text-green-500 transition-colors block">+229 19 00 83 46</a>
+                  <a href="https://wa.me/2290190083461" target="_blank" rel="noopener noreferrer" className="text-gray-400 text-sm font-medium hover:text-green-500 transition-colors block">+229 01 90 08 34 61</a>
                 </div>
               </li>
               <li className="flex items-start space-x-4">

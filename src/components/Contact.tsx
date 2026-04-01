@@ -28,7 +28,7 @@ export default function Contact() {
 
         <div className="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
           <motion.a
-            href="tel:+229190083461"
+            href="tel:+2290190083461"
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
@@ -40,13 +40,13 @@ export default function Contact() {
             <h3 className="text-2xl font-black text-gray-900 dark:text-white mb-2">Call Us</h3>
             <p className="text-gray-500 dark:text-gray-400 mb-6">Speak directly with our team.</p>
             <span className="text-xl font-bold text-brand flex items-center">
-              +229 19 00 83 46
+              +229 01 90 08 34 61
               <ArrowRight className="ml-2 opacity-0 group-hover:opacity-100 transition-opacity" size={20} />
             </span>
           </motion.a>
 
           <motion.a
-            href="https://wa.me/229190083461"
+            href="https://wa.me/2290190083461"
             target="_blank"
             rel="noopener noreferrer"
             initial={{ opacity: 0, y: 20 }}
@@ -61,7 +61,7 @@ export default function Contact() {
             <h3 className="text-2xl font-black text-gray-900 dark:text-white mb-2">WhatsApp</h3>
             <p className="text-gray-500 dark:text-gray-400 mb-6">Send us a message anytime.</p>
             <span className="text-xl font-bold text-green-500 flex items-center">
-              +229 19 00 83 46
+              +229 01 90 08 34 61
               <ArrowRight className="ml-2 opacity-0 group-hover:opacity-100 transition-opacity" size={20} />
             </span>
           </motion.a>

@@ -44,7 +44,7 @@ Service: ${formData.service}
 Date: ${dateStr}
 Time: ${formData.time}
     `;
-    const whatsappUrl = `https://wa.me/229190083461?text=${encodeURIComponent(message)}`;
+    const whatsappUrl = `https://wa.me/2290190083461?text=${encodeURIComponent(message)}`;
     window.open(whatsappUrl, '_blank');
   };
 

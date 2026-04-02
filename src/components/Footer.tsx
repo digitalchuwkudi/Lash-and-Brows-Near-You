@@ -1,4 +1,4 @@
-import { Instagram, MapPin, Phone, Heart, MessageCircle } from 'lucide-react';
+import { Instagram, MapPin, Phone, Heart, MessageCircle, Youtube } from 'lucide-react';
 
 const TikTokIcon = ({ size = 24, className = "" }: { size?: number, className?: string }) => (
   <svg 
@@ -51,6 +51,7 @@ export default function Footer() {
               {[
                 { icon: <Instagram size={24} stroke="url(#ig-gradient)" />, href: 'https://www.instagram.com/lashandbrowsnearyou/', label: 'Instagram' },
                 { icon: <TikTokIcon size={24} />, href: 'https://www.tiktok.com/@lashandbrowsnearyou', label: 'TikTok' },
+                { icon: <Youtube size={24} color="#FF0000" />, href: 'https://www.youtube.com/@Lashbrowsnearyou1', label: 'YouTube' },
               ].map((social) => (
                 <a
                   key={social.label}

@@ -1,36 +1,19 @@
 import { motion } from 'motion/react';
 import { ArrowRight } from 'lucide-react';
-import ReactPlayer from 'react-player';
 
 export default function Hero() {
   return (
     <section className="flex flex-col w-full bg-white dark:bg-gray-950 pt-20">
       {/* Video Section (Top) */}
       <div className="relative w-full h-[70vh] md:h-[80vh] lg:h-[120vh] bg-black overflow-hidden pointer-events-none">
-        <div className="absolute top-1/2 left-1/2 w-[100vw] h-[56.25vw] min-h-[120vh] min-w-[213.33vh] -translate-x-1/2 -translate-y-1/2">
-          <ReactPlayer
-            url="https://www.youtube.com/watch?v=ycTgr-10Vb4"
-            playing
-            muted
-            loop
-            playsinline
-            width="100%"
-            height="100%"
-            config={{
-              youtube: {
-                playerVars: {
-                  controls: 0,
-                  showinfo: 0,
-                  rel: 0,
-                  playsinline: 1,
-                  modestbranding: 1,
-                  disablekb: 1,
-                  playlist: 'ycTgr-10Vb4'
-                }
-              }
-            }}
-          />
-        </div>
+        <video
+          autoPlay
+          loop
+          muted
+          playsInline
+          className="absolute inset-0 w-full h-full object-cover opacity-90"
+          src="https://res.cloudinary.com/dx41voszq/video/upload/q_auto/f_auto/v1775074119/0331_1_uhjjpf.mp4"
+        />
       </div>
 
       {/* Text Section (Below Video) */}

@@ -26,6 +26,7 @@ export default function BookingForm() {
     'Microshading (Ombre)',
     'Microblading',
     'Brow Lamination',
+    'Brow Coloration',
     'Brow Correction',
     'Lip Blush',
     'Training: Microblading & Lash Extensions',

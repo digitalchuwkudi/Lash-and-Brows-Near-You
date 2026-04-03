@@ -19,11 +19,11 @@ export default function AboutMe() {
             viewport={{ once: true }}
             className="relative"
           >
-            <div className="relative z-10 rounded-[40px] overflow-hidden shadow-2xl border-8 border-white dark:border-gray-900">
+            <div className="relative z-10 rounded-[40px] overflow-hidden shadow-2xl border-8 border-white dark:border-gray-900 group">
               <img
-                src="https://images.unsplash.com/photo-1595959183082-7b570b7e08e2?q=80&w=800"
+                src="https://wsrv.nl/?url=i.ibb.co/qLLybcDS/Whisk-02cd61bed33245aae1f44c13d1c491d6dr.png&w=800&fit=cover"
                 alt="Certified Expert Technician"
-                className="w-full h-auto object-cover"
+                className="w-full h-auto object-cover transition-transform duration-700 group-hover:scale-110"
                 referrerPolicy="no-referrer"
               />
             </div>

@@ -65,13 +65,23 @@ export default function Training() {
             viewport={{ once: true }}
             className="relative"
           >
-            <div className="relative z-10 rounded-[40px] overflow-hidden shadow-2xl border-8 border-white dark:border-gray-900">
-              <img
-                src="https://images.unsplash.com/photo-1616683693504-3ea7e9ad6fec?q=80&w=800"
-                alt="Professional Beauty Training"
-                className="w-full h-auto object-cover"
-                referrerPolicy="no-referrer"
-              />
+            <div className="relative z-10 flex flex-col gap-6">
+              <div className="rounded-[40px] overflow-hidden shadow-2xl border-8 border-white dark:border-gray-900 group aspect-square">
+                <img
+                  src="https://wsrv.nl/?url=i.ibb.co/8gkGPzxT/Whisk-f59d3db16aed09e9cd443b7187a3870bdr.png&w=600&h=600&fit=cover"
+                  alt="Professional Beauty Training 1"
+                  className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                  referrerPolicy="no-referrer"
+                />
+              </div>
+              <div className="rounded-[40px] overflow-hidden shadow-2xl border-8 border-white dark:border-gray-900 group aspect-square">
+                <img
+                  src="https://wsrv.nl/?url=i.ibb.co/Hvh5cvx/Whisk-13b951e643c8875ad024ef6d9cd54ba2dr.png&w=600&h=600&fit=cover"
+                  alt="Professional Beauty Training 2"
+                  className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                  referrerPolicy="no-referrer"
+                />
+              </div>
             </div>
             {/* Added z-20 to bring text to front */}
             <div className="absolute -bottom-10 -right-10 bg-brand p-8 rounded-3xl shadow-2xl text-white z-20">

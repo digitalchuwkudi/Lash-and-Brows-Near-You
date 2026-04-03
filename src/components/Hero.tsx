@@ -12,8 +12,8 @@ export default function Hero() {
           muted
           playsInline
           preload="auto"
-          className="absolute inset-0 w-full h-full object-cover opacity-90 scale-[1.15]"
-          src="https://res.cloudinary.com/dx41voszq/video/upload/ac_none,q_auto,f_auto/v1775074119/0331_1_uhjjpf.mp4"
+          className="absolute inset-0 w-full h-full object-cover opacity-90 scale-[1.15] transform-gpu will-change-transform"
+          src="https://res.cloudinary.com/dx41voszq/video/upload/ac_none,c_limit,w_1920,q_auto:good,f_auto/v1775074119/0331_1_uhjjpf.mp4"
         />
       </div>
 

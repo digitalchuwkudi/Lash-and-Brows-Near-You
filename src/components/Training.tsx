@@ -49,7 +49,7 @@ export default function Training() {
             </div>
 
             <a
-              href="https://wa.me/2290190083461"
+              href="https://wa.me/2290161205830"
               target="_blank"
               rel="noopener noreferrer"
               className="inline-flex items-center justify-center bg-brand text-white px-10 py-5 rounded-2xl font-black text-lg transition-all transform hover:-translate-y-1 hover:scale-105 shadow-xl shadow-brand/20 hover:opacity-90"

@@ -49,7 +49,7 @@ export default function AboutMe() {
 
             <div className="text-lg text-gray-600 dark:text-gray-400 mb-10 leading-relaxed font-medium space-y-4">
               <p>
-                I am Josella, a certified lash extension, brows, and lip blush technician serving clients across Cotonou. With over 5 years of experience in the beauty industry, I specialize in delivering premium, salon-quality results in the comfort of your home or office.
+                I am Josella, a certified esthetician serving clients across Cotonou. With over 5 years of experience in the beauty industry, I specialize in delivering premium, salon-quality results in the comfort of your home or office.
               </p>
               <p>
                 No traffic, no waiting — just personalized, professional care tailored to your schedule. I use high-quality products to create fresh, natural, confident and long-lasting looks that enhance your beauty effortlessly.

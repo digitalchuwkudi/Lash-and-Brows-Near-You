@@ -59,10 +59,10 @@ export default function Hero() {
             <div className="flex items-center space-x-4 pt-6">
               <div className="flex -space-x-3">
                 {[
-                  "https://images.unsplash.com/photo-1531746020798-e6953c6e8e04?w=100&h=100&fit=crop",
-                  "https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=100&h=100&fit=crop",
-                  "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=100&h=100&fit=crop",
-                  "https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=100&h=100&fit=crop"
+                  "https://wsrv.nl/?url=i.ibb.co/Z6kL1HDx/glamourous-african-lady-with-lash-extension.jpg&w=128&h=128&fit=cover",
+                  "https://wsrv.nl/?url=i.ibb.co/8LPq6CXy/european-microshading-and-lash-extension.jpg&w=128&h=128&fit=cover",
+                  "https://wsrv.nl/?url=i.ibb.co/XMP64F4/microshading-done-on-lady.jpg&w=128&h=128&fit=cover",
+                  "https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=128&h=128&fit=crop"
                 ].map((src, i) => (
                   <img
                     key={i}

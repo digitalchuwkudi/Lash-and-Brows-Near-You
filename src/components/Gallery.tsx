@@ -2,12 +2,16 @@ import { motion } from 'motion/react';
 
 export default function Gallery() {
   const images = [
-    { src: 'https://images.unsplash.com/photo-1588513706482-66cf53642474?q=80&w=600', alt: 'Lash Extension' },
-    { src: 'https://images.unsplash.com/photo-1512496015851-a1c82246411d?q=80&w=600', alt: 'Brow Lamination' },
-    { src: 'https://images.unsplash.com/photo-1616683693504-3ea7e9ad6fec?q=80&w=600', alt: 'Lip Blush' },
-    { src: 'https://images.unsplash.com/photo-1595959183082-7b570b7e08e2?q=80&w=600', alt: 'Classic Lash' },
-    { src: 'https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?q=80&w=600', alt: 'Microblading' },
-    { src: 'https://images.unsplash.com/photo-1586444248902-2f64eddc13df?q=80&w=600', alt: 'Volume Lash' },
+    { src: 'https://wsrv.nl/?url=i.ibb.co/G3r8yG6R/Whisk-2c4b0d0237068039bfa43875bab40abddr.png&w=600&h=600&fit=cover', alt: 'Client Work 1' },
+    { src: 'https://wsrv.nl/?url=i.ibb.co/7JMFH5Yc/Whisk-4bdc566ce27d842ae67434e18f3bbf0bdr.png&w=600&h=450&fit=cover', alt: 'Client Work 2' },
+    { src: 'https://wsrv.nl/?url=i.ibb.co/fGZYZYmJ/Whisk-6c36ed214f857c1a1254996de89bd702dr.png&w=600&h=600&fit=cover', alt: 'Client Work 3' },
+    { src: 'https://wsrv.nl/?url=i.ibb.co/S9G4sd0/Whisk-8e67f3169a3880d8d4842165342457b8dr.png&w=600&h=450&fit=cover', alt: 'Client Work 4' },
+    { src: 'https://wsrv.nl/?url=i.ibb.co/tp7rmv5j/Whisk-67f1e1efc89cd1980404a7148e857c4cdr.png&w=600&h=600&fit=cover', alt: 'Client Work 5' },
+    { src: 'https://wsrv.nl/?url=i.ibb.co/VcRvkBnT/Whisk-a4c50aabff534c98d024baee71b8a816dr.png&w=600&h=450&fit=cover', alt: 'Client Work 6' },
+    { src: 'https://wsrv.nl/?url=i.ibb.co/XZ0QNyWM/Whisk-bfa5bb843355e5dbb3d424afc2b4ad66dr.png&w=600&h=600&fit=cover', alt: 'Client Work 7' },
+    { src: 'https://wsrv.nl/?url=i.ibb.co/cKMQTz5q/Whisk-f3b37f99d6a1f7da8a7474591d20218bdr.png&w=600&h=450&fit=cover', alt: 'Client Work 8' },
+    { src: 'https://wsrv.nl/?url=i.ibb.co/cKr0hC28/Whisk89872c2152b2fbc91a54a9eb9562fa7deg.png&w=600&h=1066&fit=cover', alt: 'Client Work 9' },
+    { src: 'https://wsrv.nl/?url=i.ibb.co/35G3YQ7L/Whisk-ffa3ebe3bd7b8ccbb6b4a77df97b9d75dr.png&w=600&h=1066&fit=cover', alt: 'Client Work 10' },
   ];
 
   return (
@@ -44,11 +48,6 @@ export default function Gallery() {
                 className="w-full h-auto object-cover transition-transform duration-700 group-hover:scale-110"
                 referrerPolicy="no-referrer"
               />
-              <div className="absolute inset-0 bg-brand/20 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
-                <span className="text-white font-black text-xs uppercase tracking-widest bg-brand px-6 py-3 rounded-full">
-                  VIEW WORK
-                </span>
-              </div>
             </motion.div>
           ))}
         </div>

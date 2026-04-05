@@ -17,19 +17,22 @@ export default function Training() {
             initial={{ opacity: 0, x: -50 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
+            className="flex flex-col"
           >
-            <div className="inline-flex items-center space-x-2 bg-brand/10 px-4 py-2 rounded-full mb-6">
-              <GraduationCap className="text-brand" size={16} />
-              <span className="text-brand font-bold text-xs uppercase tracking-widest">
-                Train with us
-              </span>
+            <div className="flex flex-col items-center text-center lg:items-start lg:text-left mb-8">
+              <div className="inline-flex items-center space-x-2 bg-brand/10 px-4 py-2 rounded-full mb-6">
+                <GraduationCap className="text-brand" size={16} />
+                <span className="text-brand font-bold text-xs uppercase tracking-widest">
+                  Train with us
+                </span>
+              </div>
+
+              <h2 className="text-4xl md:text-6xl font-black text-gray-900 dark:text-white tracking-tighter leading-tight">
+                Start Your <span className="text-brand">Beauty</span> Career
+              </h2>
             </div>
 
-            <h2 className="text-4xl md:text-6xl font-black text-gray-900 dark:text-white mb-8 tracking-tighter leading-tight">
-              Start Your <span className="text-brand">Beauty</span> Career
-            </h2>
-
-            <p className="text-lg text-gray-600 dark:text-gray-400 mb-10 leading-relaxed font-medium">
+            <p className="text-lg text-gray-600 dark:text-gray-400 mb-10 leading-relaxed font-medium text-center lg:text-left">
               Join our professional training programs and learn from the best. 
               We've trained over 25+ students who are now successful beauty entrepreneurs.
             </p>
@@ -52,7 +55,7 @@ export default function Training() {
               href="https://wa.me/2290161205830"
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center justify-center bg-brand text-white px-10 py-5 rounded-2xl font-black text-lg transition-all transform hover:-translate-y-1 hover:scale-105 shadow-xl shadow-brand/20 hover:opacity-90"
+              className="inline-flex items-center justify-center bg-brand text-white px-10 py-5 rounded-2xl font-black text-lg transition-all transform hover:-translate-y-1 hover:scale-105 shadow-xl shadow-brand/20 hover:opacity-90 self-center lg:self-start"
             >
               <span>ENQUIRE ABOUT TRAINING</span>
               <ArrowRight className="ml-2" size={24} />

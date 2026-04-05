@@ -17,7 +17,7 @@ export default function AboutMe() {
             initial={{ opacity: 0, x: -50 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
-            className="relative"
+            className="relative order-last lg:order-first"
           >
             <div className="relative z-10 rounded-[40px] overflow-hidden shadow-2xl border-8 border-white dark:border-gray-900 group">
               <img
@@ -35,19 +35,22 @@ export default function AboutMe() {
             initial={{ opacity: 0, x: 50 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
+            className="order-first lg:order-last flex flex-col"
           >
-            <div className="inline-flex items-center space-x-2 bg-brand/10 px-4 py-2 rounded-full mb-6">
-              <User className="text-brand" size={16} />
-              <span className="text-brand font-bold text-xs uppercase tracking-widest">
-                About the Expert
-              </span>
+            <div className="flex flex-col items-center text-center lg:items-start lg:text-left mb-8">
+              <div className="inline-flex items-center space-x-2 bg-brand/10 px-4 py-2 rounded-full mb-6">
+                <User className="text-brand" size={16} />
+                <span className="text-brand font-bold text-xs uppercase tracking-widest">
+                  About the Expert
+                </span>
+              </div>
+
+              <h2 className="text-4xl md:text-6xl font-black text-gray-900 dark:text-white tracking-tighter leading-tight">
+                Meet Your <span className="text-brand">Beauty Expert</span>
+              </h2>
             </div>
 
-            <h2 className="text-4xl md:text-6xl font-black text-gray-900 dark:text-white mb-8 tracking-tighter leading-tight">
-              Meet Your <span className="text-brand">Beauty Expert</span>
-            </h2>
-
-            <div className="text-lg text-gray-600 dark:text-gray-400 mb-10 leading-relaxed font-medium space-y-4">
+            <div className="text-lg text-gray-600 dark:text-gray-400 mb-10 leading-relaxed font-medium space-y-4 text-center lg:text-left">
               <p>
                 I am Josella, a certified esthetician serving clients across Cotonou. With over 5 years of experience in the beauty industry, I specialize in delivering premium, salon-quality results in the comfort of your home or office.
               </p>

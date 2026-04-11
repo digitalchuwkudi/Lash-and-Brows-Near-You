@@ -1,4 +1,4 @@
-import { Instagram, MapPin, Phone, Heart, MessageCircle, Youtube } from 'lucide-react';
+import { Instagram, MapPin, Phone, MessageCircle, Youtube } from 'lucide-react';
 
 const TikTokIcon = ({ size = 24, className = "" }: { size?: number, className?: string }) => (
   <svg 
@@ -132,10 +132,8 @@ export default function Footer() {
           <p className="text-gray-500 text-xs font-bold uppercase tracking-widest">
             © 2026 LASH AND BROWS NEAR YOU. ALL RIGHTS RESERVED.
           </p>
-          <div className="flex items-center space-x-2 text-gray-500 text-xs font-bold uppercase tracking-widest">
-            <span>MADE WITH</span>
-            <Heart className="text-brand" size={14} fill="currentColor" />
-            <span>IN COTONOU</span>
+          <div className="flex items-center space-x-2 text-brand text-xs font-bold tracking-widest">
+            <span>Cooked by Digital Chukwudi</span>
           </div>
         </div>
       </div>

@@ -94,7 +94,7 @@ Time: ${formData.time}
             </div>
 
             <form onSubmit={handleWhatsAppSubmit} className="space-y-6 relative z-10 flex-grow flex flex-col">
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+              <div className="grid grid-cols-1 gap-6">
                 <div className="space-y-2">
                   <label className="text-xs font-black text-gray-400 uppercase tracking-widest flex items-center">
                     <User size={14} className="mr-2" /> Full Name
@@ -109,7 +109,7 @@ Time: ${formData.time}
                 </div>
                 <div className="space-y-2">
                   <label className="text-xs font-black text-gray-400 uppercase tracking-widest flex items-center">
-                    <Phone size={14} className="mr-2" /> WhatsApp Phone
+                    <Phone size={14} className="mr-2" /> WhatsApp Number
                   </label>
                   <input
                     type="tel"
@@ -137,7 +137,7 @@ Time: ${formData.time}
                 </select>
               </div>
 
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+              <div className="grid grid-cols-1 gap-6 mb-6">
                 <div className="space-y-2">
                   <label className="text-xs font-black text-gray-400 uppercase tracking-widest flex items-center">
                     <Calendar size={14} className="mr-2" /> Date
@@ -195,7 +195,7 @@ Time: ${formData.time}
             </div>
 
             <form action="https://formspree.io/f/mreolloq" method="POST" className="space-y-6 relative z-10 flex-grow flex flex-col">
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+              <div className="grid grid-cols-1 gap-6">
                 <div className="space-y-2">
                   <label className="text-xs font-black text-gray-400 uppercase tracking-widest flex items-center">
                     <User size={14} className="mr-2" /> Full Name
@@ -252,7 +252,7 @@ Time: ${formData.time}
                 </select>
               </div>
 
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+              <div className="grid grid-cols-1 gap-6 mb-6">
                 <div className="space-y-2">
                   <label className="text-xs font-black text-gray-400 uppercase tracking-widest flex items-center">
                     <Calendar size={14} className="mr-2" /> Date

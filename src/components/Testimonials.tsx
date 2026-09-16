@@ -1,7 +1,11 @@
 import { motion } from 'motion/react';
 import { useRef } from 'react';
+import { useLanguage } from '../context/LanguageContext';
+import { translations } from '../utils/translations';
 
 export default function Testimonials() {
+  const { language } = useLanguage();
+  const t = translations[language];
   const videoRefs = useRef<(HTMLVideoElement | null)[]>([]);
 
   const handlePlay = (currentIndex: number) => {
@@ -32,11 +36,14 @@ export default function Testimonials() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
           >
+            <div className="inline-flex items-center space-x-2 bg-brand/10 px-4 py-2 rounded-full mb-6">
+              <span className="text-brand font-bold text-xs uppercase tracking-widest">{t.testimonials.tag}</span>
+            </div>
             <h2 className="text-4xl md:text-6xl font-black text-gray-900 dark:text-white mb-6 tracking-tighter">
-              What Our <span className="text-brand">Clients</span> Say
+              {t.testimonials.title.split(' ').slice(0, 2).join(' ')} <span className="text-brand">{t.testimonials.title.split(' ').slice(2).join(' ')}</span>
             </h2>
             <p className="text-lg text-gray-600 dark:text-gray-400 max-w-2xl mx-auto font-medium">
-              Trusted by more than 150+ beautiful women in Cotonou. Watch their transformation stories.
+              {t.testimonials.subheading}
             </p>
           </motion.div>
         </div>

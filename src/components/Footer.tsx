@@ -1,4 +1,6 @@
 import { Instagram, MapPin, Phone, MessageCircle, Youtube } from 'lucide-react';
+import { useLanguage } from '../context/LanguageContext';
+import { translations } from '../utils/translations';
 
 const TikTokIcon = ({ size = 24, className = "" }: { size?: number, className?: string }) => (
   <svg 
@@ -15,6 +17,9 @@ const TikTokIcon = ({ size = 24, className = "" }: { size?: number, className?: 
 );
 
 export default function Footer() {
+  const { language } = useLanguage();
+  const t = translations[language];
+
   return (
     <footer className="bg-gray-900 dark:bg-gray-950 pt-24 pb-12 overflow-hidden relative transition-colors">
       <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full h-1 bg-brand/30" />
@@ -35,8 +40,7 @@ export default function Footer() {
               </span>
             </div>
             <p className="text-gray-400 text-lg font-medium leading-relaxed max-w-md mb-10">
-              Premium mobile eyelash extension and brows expert in Cotonou. 
-              Transforming beauty and building confidence since 2021.
+              {t.footer.description}
             </p>
             <div className="flex items-center space-x-6">
               <svg width="0" height="0" className="absolute">
@@ -68,17 +72,17 @@ export default function Footer() {
 
           <div>
             <h4 className="text-white font-black text-sm uppercase tracking-widest mb-8">
-              Quick Links
+              {t.footer.quickLinks}
             </h4>
             <ul className="space-y-4">
               {[
-                { name: 'Home', href: '#' },
-                { name: 'About', href: '#about' },
-                { name: 'Services', href: '#services' },
-                { name: 'Gallery', href: '#gallery' },
-                { name: 'Training', href: '#training' },
-                { name: 'Bookings', href: '#book' },
-                { name: 'Contact', href: '#contact' }
+                { name: t.navbar.home, href: '#' },
+                { name: t.navbar.about, href: '#about' },
+                { name: t.navbar.services, href: '#services' },
+                { name: t.navbar.gallery, href: '#gallery' },
+                { name: t.navbar.training, href: '#training' },
+                { name: t.navbar.booking, href: '#book' },
+                { name: t.navbar.contact, href: '#contact' }
               ].map((link) => (
                 <li key={link.name}>
                   <a
@@ -94,7 +98,7 @@ export default function Footer() {
 
           <div>
             <h4 className="text-white font-black text-sm uppercase tracking-widest mb-8">
-              Contact Info
+              {t.footer.contactInfo}
             </h4>
             <ul className="space-y-6">
               <li className="flex items-start space-x-4">
@@ -102,7 +106,7 @@ export default function Footer() {
                   <Phone className="text-brand" size={20} />
                 </div>
                 <div>
-                  <p className="text-white font-bold text-sm uppercase tracking-wide">Phone</p>
+                  <p className="text-white font-bold text-sm uppercase tracking-wide">{language === 'en' ? 'Phone' : 'Téléphone'}</p>
                   <a href="tel:+2290161205830" className="text-gray-400 text-sm font-medium hover:text-brand transition-colors block">+229 01 61 20 58 30</a>
                 </div>
               </li>
@@ -120,7 +124,7 @@ export default function Footer() {
                   <MapPin className="text-brand" size={20} />
                 </div>
                 <div>
-                  <p className="text-white font-bold text-sm uppercase tracking-wide">Location</p>
+                  <p className="text-white font-bold text-sm uppercase tracking-wide">{language === 'en' ? 'Location' : 'Localisation'}</p>
                   <p className="text-gray-400 text-sm font-medium">Cotonou, Benin Republic</p>
                 </div>
               </li>
@@ -130,10 +134,10 @@ export default function Footer() {
 
         <div className="pt-12 border-t border-white/5 flex flex-col md:flex-row justify-between items-center space-y-6 md:space-y-0">
           <p className="text-gray-500 text-xs font-bold uppercase tracking-widest">
-            © 2026 LASH AND BROWS NEAR YOU. ALL RIGHTS RESERVED.
+            © 2026 LASH AND BROWS NEAR YOU. {language === 'en' ? 'ALL RIGHTS RESERVED.' : 'TOUS DROITS RÉSERVÉS.'}
           </p>
           <div className="flex items-center space-x-2 text-brand text-xs font-bold tracking-widest">
-            <span>Cooked by Digital Chukwudi</span>
+            <span>{language === 'en' ? 'Cooked by Digital Chukwudi' : 'Préparé par Digital Chukwudi'}</span>
           </div>
         </div>
       </div>

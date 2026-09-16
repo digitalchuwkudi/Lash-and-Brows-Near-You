@@ -1,7 +1,12 @@
 import { motion } from 'motion/react';
 import { Phone, MessageCircle, ArrowRight } from 'lucide-react';
+import { useLanguage } from '../context/LanguageContext';
+import { translations } from '../utils/translations';
 
 export default function Contact() {
+  const { language } = useLanguage();
+  const t = translations[language];
+
   return (
     <section id="contact" className="py-24 bg-white dark:bg-gray-950 transition-colors">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -14,14 +19,14 @@ export default function Contact() {
             <div className="inline-flex items-center space-x-2 bg-brand/10 px-4 py-2 rounded-full mb-6">
               <Phone className="text-brand" size={16} />
               <span className="text-brand font-bold text-xs uppercase tracking-widest">
-                Get In Touch
+                {t.contact.tag}
               </span>
             </div>
             <h2 className="text-4xl md:text-5xl font-black text-gray-900 dark:text-white mb-6 tracking-tighter leading-tight">
-              Contact <span className="text-brand">Us</span>
+              {t.contact.title.split(' ')[0]} <span className="text-brand">{t.contact.title.split(' ').slice(1).join(' ')}</span>
             </h2>
             <p className="text-lg text-gray-600 dark:text-gray-400 max-w-2xl mx-auto font-medium">
-              Have questions or need assistance? Reach out to us directly via phone or WhatsApp. We are always here to help!
+              {t.contact.subheading}
             </p>
           </motion.div>
         </div>
@@ -37,8 +42,8 @@ export default function Contact() {
             <div className="bg-brand/10 p-5 rounded-full text-brand mb-6 group-hover:scale-110 transition-transform">
               <Phone size={32} />
             </div>
-            <h3 className="text-2xl font-black text-gray-900 dark:text-white mb-2">Call Us</h3>
-            <p className="text-gray-500 dark:text-gray-400 mb-6">Speak directly with our team.</p>
+            <h3 className="text-2xl font-black text-gray-900 dark:text-white mb-2">{t.contact.callUs}</h3>
+            <p className="text-gray-500 dark:text-gray-400 mb-6">{language === 'en' ? 'Speak directly with our team.' : 'Parlez directement avec notre équipe.'}</p>
             <span className="text-xl font-bold text-brand flex items-center">
               +229 01 61 20 58 30
               <ArrowRight className="ml-2 opacity-0 group-hover:opacity-100 transition-opacity" size={20} />
@@ -59,7 +64,7 @@ export default function Contact() {
               <MessageCircle size={32} />
             </div>
             <h3 className="text-2xl font-black text-gray-900 dark:text-white mb-2">WhatsApp</h3>
-            <p className="text-gray-500 dark:text-gray-400 mb-6">Send us a message anytime.</p>
+            <p className="text-gray-500 dark:text-gray-400 mb-6">{language === 'en' ? 'Send us a message anytime.' : 'Envoyez-nous un message à tout moment.'}</p>
             <span className="text-xl font-bold text-green-500 flex items-center">
               +229 01 90 08 34 61
               <ArrowRight className="ml-2 opacity-0 group-hover:opacity-100 transition-opacity" size={20} />

@@ -4,8 +4,13 @@ import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
 import { MessageCircle, Calendar, User, Phone, Clock, Send, Sparkles, Mail, ArrowRight } from 'lucide-react';
 import { format } from 'date-fns';
+import { useLanguage } from '../context/LanguageContext';
+import { translations } from '../utils/translations';
 
 export default function BookingForm() {
+  const { language } = useLanguage();
+  const t = translations[language];
+
   const [startDate, setStartDate] = useState<Date | null>(new Date());
   const [startDateManual, setStartDateManual] = useState<Date | null>(new Date());
   const [formData, setFormData] = useState({
@@ -25,10 +30,37 @@ export default function BookingForm() {
     'Combo Brows',
     'Microshading (Ombre)',
     'Microblading',
+    'Eyeliner',
     'Brow Lamination',
     'Brow Coloration',
     'Brow Correction',
     'Lip Blush',
+    'Manicure',
+    'Pedicure',
+    'Pedicure & Manicure Combo',
+    'Manicure & Gel Polish',
+    'Manicure & Simple Polish',
+    'Pedicure + Gel Polish',
+    'Pedicure + Simple Polish',
+    'Pedicure Spa + Gel Polish',
+    'Pedicure Spa + Simple Polish',
+    'Gel Polish Removal',
+    'Sugaring: Upper Lip',
+    'Sugaring: Face',
+    'Sugaring: Chin',
+    'Sugaring: Underarm',
+    'Sugaring: Half Arms (to Elbow)',
+    'Sugaring: Legs Below Knee',
+    'Sugaring: Full Legs',
+    'Sugaring: Bikini Zone',
+    'Hard Wax: Upper Lip',
+    'Hard Wax: Face',
+    'Hard Wax: Chin',
+    'Hard Wax: Underarm',
+    'Hard Wax: Half Arms (to Elbow)',
+    'Hard Wax: Legs Below Knee',
+    'Hard Wax: Full Legs',
+    'Hard Wax: Bikini Zone',
     'Training: Microblading & Lash Extensions',
     'Training: Lash Extensions & Brow Lamination',
     'Training: Lash Extension (Includes training kits)',
@@ -61,14 +93,14 @@ Time: ${formData.time}
             <div className="inline-flex items-center space-x-2 bg-brand/10 px-4 py-2 rounded-full mb-6">
               <Calendar className="text-brand" size={16} />
               <span className="text-brand font-bold text-xs uppercase tracking-widest">
-                Bookings
+                {t.booking.tag}
               </span>
             </div>
             <h2 className="text-4xl md:text-6xl font-black text-gray-900 dark:text-white mb-6 tracking-tighter leading-tight">
-              Ready for your <span className="text-brand">Transformation?</span>
+              {t.booking.title} <span className="text-brand">{t.booking.titleSpan}</span>
             </h2>
             <p className="text-lg text-gray-600 dark:text-gray-400 max-w-2xl mx-auto font-medium">
-              Choose your preferred booking method below. Book online via our portal, use WhatsApp for instant replies, or fill out our manual form.
+              {t.booking.subheading}
             </p>
           </motion.div>
         </div>
@@ -86,10 +118,10 @@ Time: ${formData.time}
             <div className="mb-8 relative z-10">
               <h3 className="text-2xl font-black text-gray-900 dark:text-white mb-2 flex items-center">
                 <MessageCircle className="text-green-500 mr-3" size={28} />
-                Book via WhatsApp
+                {t.booking.whatsappTab}
               </h3>
               <p className="text-gray-500 dark:text-gray-400 text-sm font-medium">
-                Fastest response. Fill the details to generate a message.
+                {t.booking.whatsappDesc}
               </p>
             </div>
 
@@ -97,19 +129,19 @@ Time: ${formData.time}
               <div className="grid grid-cols-1 gap-6">
                 <div className="space-y-2">
                   <label className="text-xs font-black text-gray-400 uppercase tracking-widest flex items-center">
-                    <User size={14} className="mr-2" /> Full Name
+                    <User size={14} className="mr-2" /> {t.booking.fullName}
                   </label>
                   <input
                     type="text"
                     required
-                    placeholder="Your Name"
+                    placeholder={t.booking.namePlaceholder}
                     className="w-full bg-gray-50 dark:bg-gray-900 border border-gray-100 dark:border-gray-800 rounded-2xl px-6 py-4 text-sm font-bold dark:text-white focus:outline-none focus:border-green-500 transition-colors"
                     onChange={(e) => setFormData({ ...formData, name: e.target.value })}
                   />
                 </div>
                 <div className="space-y-2">
                   <label className="text-xs font-black text-gray-400 uppercase tracking-widest flex items-center">
-                    <Phone size={14} className="mr-2" /> WhatsApp Number
+                    <Phone size={14} className="mr-2" /> {t.booking.whatsappNumber}
                   </label>
                   <input
                     type="tel"
@@ -123,16 +155,18 @@ Time: ${formData.time}
 
               <div className="space-y-2">
                 <label className="text-xs font-black text-gray-400 uppercase tracking-widest flex items-center">
-                  <Sparkles size={14} className="mr-2" /> Select Service
+                  <Sparkles size={14} className="mr-2" /> {t.booking.selectService}
                 </label>
                 <select
                   required
                   className="w-full bg-gray-50 dark:bg-gray-900 border border-gray-100 dark:border-gray-800 rounded-2xl px-6 py-4 text-sm font-bold dark:text-white focus:outline-none focus:border-green-500 transition-colors appearance-none"
                   onChange={(e) => setFormData({ ...formData, service: e.target.value })}
                 >
-                  <option value="">Choose a service</option>
+                  <option value="">{t.booking.chooseService}</option>
                   {services.map((s) => (
-                    <option key={s} value={s}>{s}</option>
+                    <option key={s} value={s}>
+                      {t.services.items[s as keyof typeof t.services.items] || s}
+                    </option>
                   ))}
                 </select>
               </div>
@@ -140,7 +174,7 @@ Time: ${formData.time}
               <div className="grid grid-cols-1 gap-6 mb-6">
                 <div className="space-y-2">
                   <label className="text-xs font-black text-gray-400 uppercase tracking-widest flex items-center">
-                    <Calendar size={14} className="mr-2" /> Date
+                    <Calendar size={14} className="mr-2" /> {t.booking.date}
                   </label>
                   <DatePicker
                     selected={startDate}
@@ -152,7 +186,7 @@ Time: ${formData.time}
                 </div>
                 <div className="space-y-2">
                   <label className="text-xs font-black text-gray-400 uppercase tracking-widest flex items-center">
-                    <Clock size={14} className="mr-2" /> Time
+                    <Clock size={14} className="mr-2" /> {t.booking.time}
                   </label>
                   <input
                     type="time"
@@ -168,7 +202,7 @@ Time: ${formData.time}
                   type="submit"
                   className="w-full bg-green-500 text-white py-5 rounded-2xl font-black text-lg transition-all transform hover:-translate-y-1 hover:scale-105 shadow-xl shadow-green-500/20 flex items-center justify-center hover:bg-green-600"
                 >
-                  <span>BOOK VIA WHATSAPP</span>
+                  <span>{t.booking.btnWhatsapp}</span>
                   <ArrowRight className="ml-2" size={24} />
                 </button>
               </div>
@@ -187,10 +221,10 @@ Time: ${formData.time}
             <div className="mb-8 relative z-10">
               <h3 className="text-2xl font-black text-gray-900 dark:text-white mb-2 flex items-center">
                 <Send className="text-brand mr-3" size={28} />
-                Manual Booking
+                {t.booking.manualTab}
               </h3>
               <p className="text-gray-500 dark:text-gray-400 text-sm font-medium">
-                Submit your request and we'll get back to you.
+                {t.booking.manualDesc}
               </p>
             </div>
 
@@ -198,26 +232,26 @@ Time: ${formData.time}
               <div className="grid grid-cols-1 gap-6">
                 <div className="space-y-2">
                   <label className="text-xs font-black text-gray-400 uppercase tracking-widest flex items-center">
-                    <User size={14} className="mr-2" /> Full Name
+                    <User size={14} className="mr-2" /> {t.booking.fullName}
                   </label>
                   <input
                     type="text"
                     name="name"
                     required
-                    placeholder="Your Name"
+                    placeholder={t.booking.namePlaceholder}
                     className="w-full bg-gray-50 dark:bg-gray-900 border border-gray-100 dark:border-gray-800 rounded-2xl px-6 py-4 text-sm font-bold dark:text-white focus:outline-none focus:border-brand transition-colors"
                   />
                 </div>
 
                 <div className="space-y-2">
                   <label className="text-xs font-black text-gray-400 uppercase tracking-widest flex items-center">
-                    <Phone size={14} className="mr-2" /> Phone Number
+                    <Phone size={14} className="mr-2" /> {t.booking.whatsappNumber}
                   </label>
                   <input
                     type="tel"
                     name="phone"
                     required
-                    placeholder="Your Phone Number"
+                    placeholder={t.booking.phonePlaceholder}
                     className="w-full bg-gray-50 dark:bg-gray-900 border border-gray-100 dark:border-gray-800 rounded-2xl px-6 py-4 text-sm font-bold dark:text-white focus:outline-none focus:border-brand transition-colors"
                   />
                 </div>
@@ -225,29 +259,31 @@ Time: ${formData.time}
 
               <div className="space-y-2">
                 <label className="text-xs font-black text-gray-400 uppercase tracking-widest flex items-center">
-                  <Mail size={14} className="mr-2" /> Email Address
+                  <Mail size={14} className="mr-2" /> {t.booking.emailAddress}
                 </label>
                 <input
                   type="email"
                   name="email"
                   required
-                  placeholder="Your Email Address"
+                  placeholder={t.booking.emailPlaceholder}
                   className="w-full bg-gray-50 dark:bg-gray-900 border border-gray-100 dark:border-gray-800 rounded-2xl px-6 py-4 text-sm font-bold dark:text-white focus:outline-none focus:border-brand transition-colors"
                 />
               </div>
 
               <div className="space-y-2">
                 <label className="text-xs font-black text-gray-400 uppercase tracking-widest flex items-center">
-                  <Sparkles size={14} className="mr-2" /> Select Service
+                  <Sparkles size={14} className="mr-2" /> {t.booking.selectService}
                 </label>
                 <select
                   name="service"
                   required
                   className="w-full bg-gray-50 dark:bg-gray-900 border border-gray-100 dark:border-gray-800 rounded-2xl px-6 py-4 text-sm font-bold dark:text-white focus:outline-none focus:border-brand transition-colors appearance-none"
                 >
-                  <option value="">Choose a service</option>
+                  <option value="">{t.booking.chooseService}</option>
                   {services.map((s) => (
-                    <option key={s} value={s}>{s}</option>
+                    <option key={s} value={s}>
+                      {t.services.items[s as keyof typeof t.services.items] || s}
+                    </option>
                   ))}
                 </select>
               </div>
@@ -255,7 +291,7 @@ Time: ${formData.time}
               <div className="grid grid-cols-1 gap-6 mb-6">
                 <div className="space-y-2">
                   <label className="text-xs font-black text-gray-400 uppercase tracking-widest flex items-center">
-                    <Calendar size={14} className="mr-2" /> Date
+                    <Calendar size={14} className="mr-2" /> {t.booking.date}
                   </label>
                   <DatePicker
                     selected={startDateManual}
@@ -264,12 +300,11 @@ Time: ${formData.time}
                     dateFormat="MMMM d, yyyy"
                     minDate={new Date()}
                   />
-                  {/* Hidden input to ensure DatePicker value is submitted with the form */}
                   <input type="hidden" name="date" value={startDateManual ? format(startDateManual, 'PPPP') : ''} />
                 </div>
                 <div className="space-y-2">
                   <label className="text-xs font-black text-gray-400 uppercase tracking-widest flex items-center">
-                    <Clock size={14} className="mr-2" /> Time
+                    <Clock size={14} className="mr-2" /> {t.booking.time}
                   </label>
                   <input
                     type="time"
@@ -285,12 +320,13 @@ Time: ${formData.time}
                   type="submit"
                   className="w-full bg-brand text-white py-5 rounded-2xl font-black text-lg transition-all transform hover:-translate-y-1 hover:scale-105 shadow-xl shadow-brand/20 flex items-center justify-center hover:opacity-90"
                 >
-                  <span>SUBMIT BOOKING</span>
+                  <span>{t.booking.btnManual}</span>
                   <ArrowRight className="ml-2" size={24} />
                 </button>
               </div>
             </form>
           </motion.div>
+
           {/* Right: Setmore Booking */}
           <motion.div
             initial={{ opacity: 0, y: 30 }}
@@ -303,10 +339,10 @@ Time: ${formData.time}
             <div className="mb-8 relative z-10">
               <h3 className="text-2xl font-black text-gray-900 dark:text-white mb-2 flex items-center">
                 <Calendar className="text-brand mr-3" size={28} />
-                Book on Setmore
+                {t.booking.setmoreTab}
               </h3>
               <p className="text-gray-500 dark:text-gray-400 text-sm font-medium">
-                More booking options for you. View real-time availability and secure your spot instantly.
+                {t.booking.setmoreDesc}
               </p>
             </div>
 
@@ -317,7 +353,7 @@ Time: ${formData.time}
                 rel="noopener noreferrer" 
                 className="w-full bg-brand text-white py-5 rounded-2xl font-black text-lg transition-all transform hover:-translate-y-1 hover:scale-105 shadow-xl shadow-brand/20 flex items-center justify-center hover:opacity-90"
               >
-                <span>BOOK NOW</span>
+                <span>{t.booking.btnSetmore}</span>
                 <ArrowRight className="ml-2" size={24} />
               </a>
             </div>

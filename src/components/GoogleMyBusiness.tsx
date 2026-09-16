@@ -1,7 +1,26 @@
 import { motion } from 'motion/react';
-import { MapPin, Star, Clock, Phone } from 'lucide-react';
+import { MapPin, Star, Clock } from 'lucide-react';
+import { useLanguage } from '../context/LanguageContext';
 
 export default function GoogleMyBusiness() {
+  const { language } = useLanguage();
+
+  const isEn = language === 'en';
+
+  const title = isEn ? 'Find Us on Google' : 'Trouvez-nous sur Google';
+  const subheading = isEn 
+    ? 'Check out our Google My Business profile, read reviews from our amazing clients, and get directions.'
+    : 'Consultez notre profil Google My Business, lisez les avis de nos formidables clientes et planifiez votre itinéraire.';
+  const locationLabel = isEn ? 'Location' : 'Localisation';
+  const reviewsLabel = isEn ? 'Reviews' : 'Avis';
+  const hoursLabel = isEn ? 'Hours' : 'Horaires';
+  const directionsLink = isEn ? 'Get Directions' : 'Obtenir l\'itinéraire';
+  const readReviewsLink = isEn ? 'Read Reviews' : 'Lire les avis';
+  const viewOnMapsBtn = isEn ? 'View on Google Maps' : 'Voir sur Google Maps';
+  const hoursDetail = isEn 
+    ? <>Mon - Sat: 9:00 AM - 6:00 PM<br />Sun: Closed</>
+    : <>Lun - Sam: 09h00 - 18h00<br />Dim: Fermé</>;
+
   return (
     <section className="py-24 bg-white dark:bg-gray-950 relative overflow-hidden">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -13,10 +32,10 @@ export default function GoogleMyBusiness() {
           className="text-center mb-16"
         >
           <h2 className="text-3xl md:text-5xl font-black text-gray-900 dark:text-white mb-6 tracking-tight">
-            Find Us on <span className="text-brand">Google</span>
+            {title.split(' ')[0]} {title.split(' ')[1]} {title.split(' ')[2]} <span className="text-brand">{title.split(' ')[3]}</span>
           </h2>
-          <p className="text-lg text-gray-600 dark:text-gray-400 max-w-2xl mx-auto">
-            Check out our Google My Business profile, read reviews from our amazing clients, and get directions.
+          <p className="text-lg text-gray-600 dark:text-gray-400 max-w-2xl mx-auto font-medium">
+            {subheading}
           </p>
         </motion.div>
 
@@ -36,7 +55,7 @@ export default function GoogleMyBusiness() {
                   <MapPin size={24} />
                 </div>
                 <div>
-                  <p className="font-semibold text-gray-900 dark:text-white">Location</p>
+                  <p className="font-semibold text-gray-900 dark:text-white">{locationLabel}</p>
                   <p className="text-gray-600 dark:text-gray-400 mt-1">Cotonou, Benin</p>
                   <a 
                     href="https://www.google.com/maps/place/Lash+and+brows/@6.3629383,2.4736715,17z/data=!3m1!4b1!4m6!3m5!1s0x1023559f3bac5445:0xfc92304e5de70066!8m2!3d6.3629383!4d2.4736715!16s%2Fg%2F11w21crwn4?entry=ttu" 
@@ -44,7 +63,7 @@ export default function GoogleMyBusiness() {
                     rel="noopener noreferrer"
                     className="text-brand hover:underline text-sm mt-2 inline-block font-medium"
                   >
-                    Get Directions &rarr;
+                    {directionsLink} &rarr;
                   </a>
                 </div>
               </div>
@@ -54,7 +73,7 @@ export default function GoogleMyBusiness() {
                   <Star size={24} />
                 </div>
                 <div>
-                  <p className="font-semibold text-gray-900 dark:text-white">Reviews</p>
+                  <p className="font-semibold text-gray-900 dark:text-white">{reviewsLabel}</p>
                   <div className="flex items-center mt-1">
                     <span className="text-gray-900 dark:text-white font-bold mr-2">5.0</span>
                     <div className="flex text-yellow-400">
@@ -69,7 +88,7 @@ export default function GoogleMyBusiness() {
                     rel="noopener noreferrer"
                     className="text-brand hover:underline text-sm mt-1 inline-block font-medium"
                   >
-                    Read Reviews &rarr;
+                    {readReviewsLink} &rarr;
                   </a>
                 </div>
               </div>
@@ -79,10 +98,9 @@ export default function GoogleMyBusiness() {
                   <Clock size={24} />
                 </div>
                 <div>
-                  <p className="font-semibold text-gray-900 dark:text-white">Hours</p>
-                  <p className="text-gray-600 dark:text-gray-400 mt-1 text-sm">
-                    Mon - Sat: 9:00 AM - 6:00 PM<br />
-                    Sun: Closed
+                  <p className="font-semibold text-gray-900 dark:text-white">{hoursLabel}</p>
+                  <p className="text-gray-600 dark:text-gray-400 mt-1 text-sm leading-relaxed">
+                    {hoursDetail}
                   </p>
                 </div>
               </div>
@@ -95,7 +113,7 @@ export default function GoogleMyBusiness() {
                 rel="noopener noreferrer"
                 className="w-full block text-center bg-gray-900 dark:bg-white text-white dark:text-gray-900 font-bold py-4 rounded-xl hover:bg-brand hover:text-white dark:hover:bg-brand dark:hover:text-white transition-colors"
               >
-                View on Google Maps
+                {viewOnMapsBtn}
               </a>
             </div>
           </motion.div>

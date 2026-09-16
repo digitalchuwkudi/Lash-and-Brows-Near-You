@@ -1,7 +1,12 @@
 import { motion } from 'motion/react';
 import { ArrowRight } from 'lucide-react';
+import { useLanguage } from '../context/LanguageContext';
+import { translations } from '../utils/translations';
 
 export default function Hero() {
+  const { language } = useLanguage();
+  const t = translations[language];
+
   return (
     <section className="flex flex-col w-full bg-white dark:bg-gray-950 pt-20">
       {/* Video Section (Top) */}
@@ -28,18 +33,16 @@ export default function Hero() {
           <div className="inline-flex items-center space-x-2 bg-brand/10 px-4 py-2 rounded-full mb-6 border border-brand/20">
             <span className="flex h-2 w-2 rounded-full bg-brand animate-pulse" />
             <span className="text-brand font-bold text-xs uppercase tracking-widest">
-              Premium Home Service
+              {t.hero.tag}
             </span>
           </div>
 
           <h1 className="text-4xl sm:text-5xl md:text-6xl font-black leading-tight mb-6 text-gray-900 dark:text-white tracking-tighter max-w-3xl mx-auto">
-            Home Service for <br className="hidden sm:block" />
-            <span className="text-orange-500">Lash Extensions, Brows & Lip Blush in Cotonou</span>
+            <span className="text-orange-500">{t.hero.heading}</span>
           </h1>
 
           <p className="text-base md:text-lg text-gray-600 dark:text-gray-300 mb-10 leading-relaxed max-w-2xl mx-auto font-medium">
-            Skip the salon - get flawless results from a certified expert, right at your doorstep.
-            Professional beauty care in the comfort of your home.
+            {t.hero.subheading}
           </p>
 
           <div className="flex flex-col items-center space-y-8">
@@ -48,20 +51,20 @@ export default function Hero() {
                 href="#book"
                 className="inline-flex items-center justify-center bg-brand text-white px-10 py-5 rounded-2xl font-black text-lg transition-all transform hover:-translate-y-1 hover:scale-105 shadow-xl shadow-brand/20 hover:opacity-90"
               >
-                <span>BOOK NOW</span>
+                <span>{t.hero.cta}</span>
                 <ArrowRight className="ml-2" size={24} />
               </a>
               <p className="absolute -bottom-7 left-0 right-0 text-center text-xs font-bold text-gray-500 dark:text-gray-400 uppercase tracking-widest">
-                free, no charges
+                {t.hero.ctaTagline}
               </p>
             </div>
 
             <div className="flex items-center space-x-4 pt-6">
               <div className="flex -space-x-3">
                 {[
-                  "https://wsrv.nl/?url=i.ibb.co/Z6kL1HDx/glamourous-african-lady-with-lash-extension.jpg&w=128&h=128&fit=cover",
-                  "https://wsrv.nl/?url=i.ibb.co/8LPq6CXy/european-microshading-and-lash-extension.jpg&w=128&h=128&fit=cover",
-                  "https://wsrv.nl/?url=i.ibb.co/XMP64F4/microshading-done-on-lady.jpg&w=128&h=128&fit=cover",
+                  "https://i.ibb.co/Z6kL1HDx/glamourous-african-lady-with-lash-extension.jpg",
+                  "https://i.ibb.co/8LPq6CXy/european-microshading-and-lash-extension.jpg",
+                  "https://i.ibb.co/XMP64F4/microshading-done-on-lady.jpg",
                   "https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=128&h=128&fit=crop"
                 ].map((src, i) => (
                   <img
@@ -74,8 +77,8 @@ export default function Hero() {
                 ))}
               </div>
               <div className="text-left text-sm">
-                <p className="font-black text-gray-900 dark:text-white">70+ Beautiful Women</p>
-                <p className="text-gray-600 dark:text-gray-400 font-medium">Trusted our expertise</p>
+                <p className="font-black text-gray-900 dark:text-white">{t.hero.clientCount}</p>
+                <p className="text-gray-600 dark:text-gray-400 font-medium">{t.hero.clientTrusted}</p>
               </div>
             </div>
           </div>

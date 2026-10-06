@@ -38,7 +38,8 @@ export function setMetaPixelId(pixelId: string): void {
  * Gets the stored test event code (e.g. TEST72288) for Events Manager real-time testing.
  */
 export function getTestEventCode(): string {
-  return localStorage.getItem(TEST_CODE_KEY) || '';
+  const localCode = localStorage.getItem(TEST_CODE_KEY) || '';
+  return localCode.trim() || 'TEST72288';
 }
 
 /**

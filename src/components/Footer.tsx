@@ -140,8 +140,6 @@ export default function Footer() {
           </p>
           <div className="flex flex-col md:flex-row items-center gap-4 md:gap-6 text-brand text-xs font-bold tracking-widest">
             <span>{language === 'en' ? 'Cooked by Digital Chukwudi' : 'Préparé par Digital Chukwudi'}</span>
-            <span className="hidden md:inline text-white/20">•</span>
-            <MetaPixelConfigurator />
           </div>
         </div>
       </div>

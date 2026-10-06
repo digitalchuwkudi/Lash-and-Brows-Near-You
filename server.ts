@@ -9,7 +9,7 @@ const __dirname = path.dirname(__filename);
 
 async function startServer() {
   const app = express();
-  const isProd = process.env.NODE_ENV === 'production' || fs.existsSync(path.resolve(__dirname, 'dist'));
+  const isProd = process.env.NODE_ENV === 'production';
   const port = Number(process.env.PORT) || 3000;
 
   // 1. Image Proxy Endpoint to bypass local ISP blocks (e.g. i.ibb.co ERR_CONNECTION_RESET)
@@ -49,8 +49,8 @@ async function startServer() {
       const buffer = Buffer.from(arrayBuffer);
       return res.send(buffer);
     } catch (error) {
-      console.error('Image proxy error:', error);
-      return res.status(500).send('Internal server error loading image');
+      console.error('Image proxy error, falling back to direct redirect:', error);
+      return res.redirect(imageUrl);
     }
   });
 

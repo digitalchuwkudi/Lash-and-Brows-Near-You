@@ -10,8 +10,9 @@ declare global {
   }
 }
 
-// Key for storage override to allow runtime configuration
+// Key for storage overrides to allow runtime configuration
 const LOCAL_STORAGE_KEY = 'meta_pixel_id';
+const TEST_CODE_KEY = 'meta_test_event_code';
 
 /**
  * Gets the active Meta Pixel ID from environment variables or localStorage override.
@@ -34,6 +35,24 @@ export function setMetaPixelId(pixelId: string): void {
 }
 
 /**
+ * Gets the stored test event code (e.g. TEST72288) for Events Manager real-time testing.
+ */
+export function getTestEventCode(): string {
+  return localStorage.getItem(TEST_CODE_KEY) || '';
+}
+
+/**
+ * Sets the stored test event code for Events Manager real-time testing.
+ */
+export function setTestEventCode(code: string): void {
+  if (code.trim()) {
+    localStorage.setItem(TEST_CODE_KEY, code.trim());
+  } else {
+    localStorage.removeItem(TEST_CODE_KEY);
+  }
+}
+
+/**
  * Checks if Meta Pixel is initialized on the window.
  */
 export function isPixelInitialized(): boolean {
@@ -48,6 +67,7 @@ export function initMetaPixel(): void {
   if (typeof window === 'undefined') return;
 
   const pixelId = getMetaPixelId();
+  const testCode = getTestEventCode();
 
   if (!pixelId) {
     console.warn(
@@ -78,8 +98,22 @@ export function initMetaPixel(): void {
     }
   })(window, document, 'script', 'https://connect.facebook.net/en_US/fbevents.js');
 
-  window.fbq('init', pixelId);
-  window.fbq('track', 'PageView');
+  // Initialize with test code if available
+  if (testCode) {
+    window.fbq('init', pixelId, {}, { test_event_code: testCode });
+    // Also set it globally so subsequent custom tracks inherit it
+    window.fbq('set', 'options', 'test_event_code', testCode);
+    console.log(`🚀 [Meta Pixel] Initializing WITH Test Event Code: ${testCode}`);
+  } else {
+    window.fbq('init', pixelId);
+  }
+
+  // Track standard PageView with test event code options if active
+  if (testCode) {
+    window.fbq('track', 'PageView', {}, { test_event_code: testCode });
+  } else {
+    window.fbq('track', 'PageView');
+  }
   
   console.log(`🚀 [Meta Pixel] Initialized successfully with ID: ${pixelId}`);
 }
@@ -88,8 +122,13 @@ export function initMetaPixel(): void {
  * Tracks the standard PageView event.
  */
 export function trackPageView(): void {
+  const testCode = getTestEventCode();
   if (isPixelInitialized()) {
-    window.fbq('track', 'PageView');
+    if (testCode) {
+      window.fbq('track', 'PageView', {}, { test_event_code: testCode });
+    } else {
+      window.fbq('track', 'PageView');
+    }
     console.log('📈 [Meta Pixel] Tracked standard event: PageView');
   } else {
     console.log('📈 [Meta Pixel Simulator] PageView (Pixel not active)');
@@ -106,6 +145,8 @@ export function trackPageView(): void {
  */
 export function trackLead(contentName: string, service?: string, value: number = 0, currency: string = 'USD'): void {
   const pixelId = getMetaPixelId();
+  const testCode = getTestEventCode();
+  
   const eventData: Record<string, any> = {
     content_name: contentName,
     content_category: 'Beauty Service',
@@ -119,13 +160,18 @@ export function trackLead(contentName: string, service?: string, value: number =
   }
 
   if (isPixelInitialized()) {
-    window.fbq('track', 'Lead', eventData);
+    if (testCode) {
+      window.fbq('track', 'Lead', eventData, { test_event_code: testCode });
+    } else {
+      window.fbq('track', 'Lead', eventData);
+    }
     console.log(`🎯 [Meta Pixel] Tracked standard event: Lead`, eventData);
   } else {
     console.log(`🎯 [Meta Pixel Simulator] Lead Event triggered:`, {
       event: 'Lead',
       pixelId: pixelId || 'Not Configured',
-      data: eventData
+      data: eventData,
+      testCode: testCode || 'None'
     });
   }
 }
@@ -134,8 +180,13 @@ export function trackLead(contentName: string, service?: string, value: number =
  * Tracks custom events to capture refined actions.
  */
 export function trackCustom(eventName: string, params?: Record<string, any>): void {
+  const testCode = getTestEventCode();
   if (isPixelInitialized()) {
-    window.fbq('trackCustom', eventName, params);
+    if (testCode) {
+      window.fbq('trackCustom', eventName, params, { test_event_code: testCode });
+    } else {
+      window.fbq('trackCustom', eventName, params);
+    }
     console.log(`✨ [Meta Pixel] Tracked custom event: ${eventName}`, params);
   } else {
     console.log(`✨ [Meta Pixel Simulator] Custom event triggered: ${eventName}`, params);

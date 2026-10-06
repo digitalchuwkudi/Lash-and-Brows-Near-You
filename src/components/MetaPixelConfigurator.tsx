@@ -1,25 +1,28 @@
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
 import { Settings, Check, HelpCircle, ArrowRight, Eye, Code, FileText, ChevronDown, ChevronUp } from 'lucide-react';
-import { getMetaPixelId, setMetaPixelId, initMetaPixel, isPixelInitialized } from '../utils/metaPixel';
+import { getMetaPixelId, setMetaPixelId, initMetaPixel, isPixelInitialized, getTestEventCode, setTestEventCode } from '../utils/metaPixel';
 import { useLanguage } from '../context/LanguageContext';
 
 export default function MetaPixelConfigurator() {
   const { language } = useLanguage();
   const [isOpen, setIsOpen] = useState(false);
   const [pixelId, setPixelId] = useState('');
+  const [testCode, setTestCode] = useState('');
   const [activeTab, setActiveTab] = useState<'config' | 'guide'>('config');
   const [isSaved, setIsSaved] = useState(false);
   const [isInitialized, setIsInitialized] = useState(false);
 
   useEffect(() => {
     setPixelId(getMetaPixelId());
+    setTestCode(getTestEventCode());
     setIsInitialized(isPixelInitialized());
   }, [isOpen]);
 
   const handleSave = (e: React.FormEvent) => {
     e.preventDefault();
     setMetaPixelId(pixelId);
+    setTestEventCode(testCode);
     initMetaPixel();
     setIsInitialized(isPixelInitialized());
     setIsSaved(true);
@@ -115,27 +118,44 @@ export default function MetaPixelConfigurator() {
                         : 'Connectez votre Pixel Facebook / Meta ici pour suivre automatiquement vos prospects et conversions. Le code de suivi déclenche des événements "Prospect/Lead" standard lors des clics sur WhatsApp, les réservations manuelles et les réservations Setmore.'}
                     </p>
 
-                    <form onSubmit={handleSave} className="space-y-4">
+                    <form onSubmit={handleSave} className="space-y-6">
                       <div className="space-y-2">
                         <label className="text-xs font-black text-gray-400 dark:text-gray-500 uppercase tracking-widest block">
                           {language === 'en' ? 'Your Meta Pixel ID' : 'Votre ID Pixel Meta'}
                         </label>
-                        <div className="flex gap-3">
-                          <input
-                            type="text"
-                            placeholder="e.g. 123456789012345"
-                            value={pixelId}
-                            onChange={(e) => setPixelId(e.target.value.replace(/\D/g, ''))}
-                            className="flex-grow bg-gray-50 dark:bg-gray-900 border border-gray-100 dark:border-gray-800 rounded-2xl px-6 py-4 text-sm font-bold dark:text-white focus:outline-none focus:border-brand transition-colors"
-                          />
-                          <button
-                            type="submit"
-                            className="bg-brand text-white px-8 py-4 rounded-2xl font-black text-sm transition-all transform hover:-translate-y-0.5 hover:scale-102 flex items-center justify-center shrink-0 shadow-lg shadow-brand/10 hover:opacity-90"
-                          >
-                            {language === 'en' ? 'Save & Connect' : 'Enregistrer'}
-                          </button>
-                        </div>
+                        <input
+                          type="text"
+                          placeholder="e.g. 123456789012345"
+                          value={pixelId}
+                          onChange={(e) => setPixelId(e.target.value.replace(/\D/g, ''))}
+                          className="w-full bg-gray-50 dark:bg-gray-900 border border-gray-100 dark:border-gray-800 rounded-2xl px-6 py-4 text-sm font-bold dark:text-white focus:outline-none focus:border-brand transition-colors"
+                        />
                       </div>
+
+                      <div className="space-y-2">
+                        <label className="text-xs font-black text-gray-400 dark:text-gray-500 uppercase tracking-widest block flex items-center">
+                          <span>{language === 'en' ? 'Meta Test Event Code (Optional)' : 'Code d\'Événement de Test (Optionnel)'}</span>
+                        </label>
+                        <input
+                          type="text"
+                          placeholder="e.g. TEST12345"
+                          value={testCode}
+                          onChange={(e) => setTestCode(e.target.value.trim())}
+                          className="w-full bg-gray-50 dark:bg-gray-900 border border-gray-100 dark:border-gray-800 rounded-2xl px-6 py-4 text-sm font-bold dark:text-white focus:outline-none focus:border-brand transition-colors"
+                        />
+                        <p className="text-[10px] text-gray-400 font-medium">
+                          {language === 'en'
+                            ? 'Enter the active test event code from your Events Manager "Test Events" tab to watch your clicks and bookings fire live in real-time!'
+                            : 'Saisissez le code d\'événement de test de votre onglet "Événements de test" pour voir vos clics et réservations en temps réel !'}
+                        </p>
+                      </div>
+
+                      <button
+                        type="submit"
+                        className="w-full bg-brand text-white py-4 rounded-2xl font-black text-sm transition-all transform hover:-translate-y-0.5 hover:scale-102 flex items-center justify-center shadow-lg shadow-brand/10 hover:opacity-90"
+                      >
+                        {language === 'en' ? 'Save & Connect Hub' : 'Enregistrer et Connecter'}
+                      </button>
                     </form>
 
                     {isSaved && (

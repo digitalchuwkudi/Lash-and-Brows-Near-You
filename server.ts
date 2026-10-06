@@ -20,10 +20,19 @@ async function startServer() {
     }
 
     try {
-      // Fetch the image from the target URL on the server-side
-      const response = await fetch(imageUrl);
+      // Fetch the image from the target URL on the server-side with browser-like headers
+      const response = await fetch(imageUrl, {
+        headers: {
+          'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/121.0.0.0 Safari/537.36',
+          'Accept': 'image/avif,image/webp,image/apng,image/svg+xml,image/*,*/*;q=0.8',
+          'Accept-Language': 'en-US,en;q=0.9',
+          'Referer': 'https://i.ibb.co/'
+        }
+      });
       if (!response.ok) {
-        return res.status(response.status).send('Failed to fetch image from source');
+        console.error(`[Proxy] Failed to fetch image: ${response.status} ${response.statusText} for URL ${imageUrl}`);
+        // Fallback: Redirect directly to the image if proxy fetch fails on server side
+        return res.redirect(imageUrl);
       }
 
       // Copy key headers like content-type

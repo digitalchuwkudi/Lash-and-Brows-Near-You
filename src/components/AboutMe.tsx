@@ -2,6 +2,7 @@ import { motion } from 'motion/react';
 import { User, Award, Clock, ShieldCheck, Home, Star } from 'lucide-react';
 import { useLanguage } from '../context/LanguageContext';
 import { translations } from '../utils/translations';
+import { getProxiedImageUrl } from '../utils/imageProxy';
 
 export default function AboutMe() {
   const { language } = useLanguage();
@@ -26,7 +27,7 @@ export default function AboutMe() {
           >
             <div className="relative z-10 rounded-[40px] overflow-hidden shadow-2xl border-8 border-white dark:border-gray-900 group">
               <img
-                src="https://i.ibb.co/qLLybcDS/Whisk-02cd61bed33245aae1f44c13d1c491d6dr.png"
+                src={getProxiedImageUrl("https://i.ibb.co/qLLybcDS/Whisk-02cd61bed33245aae1f44c13d1c491d6dr.png")}
                 alt="Certified Expert Technician"
                 className="w-full h-auto object-cover transition-transform duration-700 group-hover:scale-110"
                 referrerPolicy="no-referrer"

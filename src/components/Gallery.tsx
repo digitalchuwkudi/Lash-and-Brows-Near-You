@@ -1,6 +1,7 @@
 import { motion } from 'motion/react';
 import { useLanguage } from '../context/LanguageContext';
 import { translations } from '../utils/translations';
+import { getProxiedImageUrl } from '../utils/imageProxy';
 
 export default function Gallery() {
   const { language } = useLanguage();
@@ -51,7 +52,7 @@ export default function Gallery() {
               className="relative group rounded-[32px] overflow-hidden shadow-xl border-4 border-white dark:border-gray-900"
             >
               <img
-                src={image.src}
+                src={getProxiedImageUrl(image.src)}
                 alt={image.alt}
                 className="w-full h-auto object-cover transition-transform duration-700 group-hover:scale-110"
                 referrerPolicy="no-referrer"

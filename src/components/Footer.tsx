@@ -1,6 +1,8 @@
 import { Instagram, MapPin, Phone, MessageCircle, Youtube } from 'lucide-react';
 import { useLanguage } from '../context/LanguageContext';
 import { translations } from '../utils/translations';
+import MetaPixelConfigurator from './MetaPixelConfigurator';
+import { getProxiedImageUrl } from '../utils/imageProxy';
 
 const TikTokIcon = ({ size = 24, className = "" }: { size?: number, className?: string }) => (
   <svg 
@@ -29,7 +31,7 @@ export default function Footer() {
           <div className="col-span-1 lg:col-span-2">
             <div className="flex items-center gap-2 md:gap-3 mb-8">
               <img 
-                src="https://i.ibb.co/KjjmHHHC/lash-brows-service-logo-LE-auto-x4.jpg" 
+                src={getProxiedImageUrl("https://i.ibb.co/KjjmHHHC/lash-brows-service-logo-LE-auto-x4.jpg")} 
                 alt="Lash & Brows Logo" 
                 className="h-10 md:h-12 w-auto rounded-full"
                 referrerPolicy="no-referrer"
@@ -136,8 +138,10 @@ export default function Footer() {
           <p className="text-gray-500 text-xs font-bold uppercase tracking-widest">
             © 2026 LASH AND BROWS NEAR YOU. {language === 'en' ? 'ALL RIGHTS RESERVED.' : 'TOUS DROITS RÉSERVÉS.'}
           </p>
-          <div className="flex items-center space-x-2 text-brand text-xs font-bold tracking-widest">
+          <div className="flex flex-col md:flex-row items-center gap-4 md:gap-6 text-brand text-xs font-bold tracking-widest">
             <span>{language === 'en' ? 'Cooked by Digital Chukwudi' : 'Préparé par Digital Chukwudi'}</span>
+            <span className="hidden md:inline text-white/20">•</span>
+            <MetaPixelConfigurator />
           </div>
         </div>
       </div>

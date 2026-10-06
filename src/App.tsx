@@ -14,6 +14,7 @@ import Footer from './components/Footer';
 import { motion, useScroll, useSpring } from 'motion/react';
 import { Moon, Sun } from 'lucide-react';
 import { useState, useEffect } from 'react';
+import { initMetaPixel } from './utils/metaPixel';
 
 export default function App() {
   const { scrollYProgress } = useScroll();
@@ -28,6 +29,8 @@ export default function App() {
   useEffect(() => {
     // Ensure dark mode is applied on mount
     document.documentElement.classList.add('dark');
+    // Initialize Meta Pixel tracking code
+    initMetaPixel();
   }, []);
 
   const toggleDark = () => {

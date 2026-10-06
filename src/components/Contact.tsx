@@ -2,6 +2,7 @@ import { motion } from 'motion/react';
 import { Phone, MessageCircle, ArrowRight } from 'lucide-react';
 import { useLanguage } from '../context/LanguageContext';
 import { translations } from '../utils/translations';
+import { trackLead } from '../utils/metaPixel';
 
 export default function Contact() {
   const { language } = useLanguage();
@@ -34,6 +35,7 @@ export default function Contact() {
         <div className="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
           <motion.a
             href="tel:+2290161205830"
+            onClick={() => trackLead('Phone Call Link', 'Direct Line')}
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
@@ -54,6 +56,7 @@ export default function Contact() {
             href="https://wa.me/2290190083461"
             target="_blank"
             rel="noopener noreferrer"
+            onClick={() => trackLead('WhatsApp Contact Link', 'Direct WhatsApp')}
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}

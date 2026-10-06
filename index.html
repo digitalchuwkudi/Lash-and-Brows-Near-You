@@ -3,13 +3,38 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="icon" type="image/jpeg" href="https://i.ibb.co/KjjmHHHC/lash-brows-service-logo-LE-auto-x4.jpg" />
+    <script>
+      // Make window.fetch writable to prevent extension setter TypeError crashes
+      try {
+        if (window.fetch) {
+          const originalFetch = window.fetch;
+          Object.defineProperty(window, 'fetch', {
+            value: originalFetch,
+            writable: true,
+            configurable: true,
+            enumerable: true
+          });
+        }
+      } catch (e) {
+        // Safe fallback
+      }
+
+      // Catch and completely silence third-party/chrome-extension exceptions in the browser
+      window.addEventListener('error', function(event) {
+        if (event.filename && (event.filename.indexOf('chrome-extension://') !== -1 || event.filename.indexOf('libs/requests.js') !== -1)) {
+          event.preventDefault();
+          event.stopPropagation();
+        }
+      }, true);
+    </script>
+    <link rel="icon" type="image/jpeg" href="/api/image-proxy?url=https%3A%2F%2Fi.ibb.co%2FKjjmHHHC%2Flash-brows-service-logo-LE-auto-x4.jpg" />
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Montserrat:wght@700;800;900&display=swap" rel="stylesheet">
     <title>Lash And Brows Near You | Premium Home Service in Cotonou</title>
   </head>
   <body>
+    <noscript><img height="1" width="1" style="display:none" src="https://www.facebook.com/tr?id=1356255929677434&ev=PageView&noscript=1" /></noscript>
     <div id="root"></div>
     <script type="module" src="/src/main.tsx"></script>
   </body>

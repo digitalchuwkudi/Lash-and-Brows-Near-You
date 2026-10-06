@@ -2,6 +2,7 @@ import { motion } from 'motion/react';
 import { ArrowRight } from 'lucide-react';
 import { useLanguage } from '../context/LanguageContext';
 import { translations } from '../utils/translations';
+import { getProxiedImageUrl } from '../utils/imageProxy';
 
 export default function Hero() {
   const { language } = useLanguage();
@@ -69,7 +70,7 @@ export default function Hero() {
                 ].map((src, i) => (
                   <img
                     key={i}
-                    src={src}
+                    src={getProxiedImageUrl(src)}
                     alt="Client"
                     className="w-12 h-12 rounded-full border-2 border-white dark:border-gray-900 object-cover shadow-sm"
                     referrerPolicy="no-referrer"

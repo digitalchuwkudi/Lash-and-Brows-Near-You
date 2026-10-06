@@ -2,6 +2,7 @@ import { motion } from 'motion/react';
 import { GraduationCap, CheckCircle2, Users, ArrowRight } from 'lucide-react';
 import { useLanguage } from '../context/LanguageContext';
 import { translations } from '../utils/translations';
+import { getProxiedImageUrl } from '../utils/imageProxy';
 
 export default function Training() {
   const { language } = useLanguage();
@@ -75,7 +76,7 @@ export default function Training() {
             <div className="relative z-10 flex flex-col gap-6">
               <div className="rounded-[40px] overflow-hidden shadow-2xl border-8 border-white dark:border-gray-900 group aspect-square">
                 <img
-                  src="https://i.ibb.co/8gkGPzxT/Whisk-f59d3db16aed09e9cd443b7187a3870bdr.png"
+                  src={getProxiedImageUrl("https://i.ibb.co/8gkGPzxT/Whisk-f59d3db16aed09e9cd443b7187a3870bdr.png")}
                   alt="Professional Beauty Training 1"
                   className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
                   referrerPolicy="no-referrer"
@@ -83,7 +84,7 @@ export default function Training() {
               </div>
               <div className="rounded-[40px] overflow-hidden shadow-2xl border-8 border-white dark:border-gray-900 group aspect-square">
                 <img
-                  src="https://i.ibb.co/Hvh5cvx/Whisk-13b951e643c8875ad024ef6d9cd54ba2dr.png"
+                  src={getProxiedImageUrl("https://i.ibb.co/Hvh5cvx/Whisk-13b951e643c8875ad024ef6d9cd54ba2dr.png")}
                   alt="Professional Beauty Training 2"
                   className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
                   referrerPolicy="no-referrer"

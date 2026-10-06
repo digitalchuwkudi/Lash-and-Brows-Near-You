@@ -3,6 +3,7 @@ import { Menu, X, ArrowRight, Globe } from 'lucide-react';
 import { useState } from 'react';
 import { useLanguage } from '../context/LanguageContext';
 import { translations } from '../utils/translations';
+import { getProxiedImageUrl } from '../utils/imageProxy';
 
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
@@ -25,7 +26,7 @@ export default function Navbar() {
           {/* Logo */}
           <div className="flex-shrink-0 flex items-center gap-2 md:gap-3">
             <img 
-              src="https://i.ibb.co/KjjmHHHC/lash-brows-service-logo-LE-auto-x4.jpg" 
+              src={getProxiedImageUrl("https://i.ibb.co/KjjmHHHC/lash-brows-service-logo-LE-auto-x4.jpg")} 
               alt="Lash & Brows Logo" 
               className="h-8 md:h-10 w-auto rounded-full"
               referrerPolicy="no-referrer"

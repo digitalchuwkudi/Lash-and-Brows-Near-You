@@ -1,7 +1,7 @@
 import { motion } from 'motion/react';
 import { useLanguage } from '../context/LanguageContext';
 import { translations } from '../utils/translations';
-import { getProxiedImageUrl } from '../utils/imageProxy';
+import { getProxiedImageUrl, getFallbackImageUrl } from '../utils/imageProxy';
 
 export default function Gallery() {
   const { language } = useLanguage();
@@ -56,6 +56,12 @@ export default function Gallery() {
                 alt={image.alt}
                 className="w-full h-auto object-cover transition-transform duration-700 group-hover:scale-110"
                 referrerPolicy="no-referrer"
+                onError={(e) => {
+                  const target = e.currentTarget;
+                  if (!target.src.includes('unsplash')) {
+                    target.src = getFallbackImageUrl('gallery', idx);
+                  }
+                }}
               />
             </motion.div>
           ))}

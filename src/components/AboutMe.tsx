@@ -2,7 +2,7 @@ import { motion } from 'motion/react';
 import { User, Award, Clock, ShieldCheck, Home, Star } from 'lucide-react';
 import { useLanguage } from '../context/LanguageContext';
 import { translations } from '../utils/translations';
-import { getProxiedImageUrl } from '../utils/imageProxy';
+import { getProxiedImageUrl, getFallbackImageUrl } from '../utils/imageProxy';
 
 export default function AboutMe() {
   const { language } = useLanguage();
@@ -31,6 +31,12 @@ export default function AboutMe() {
                 alt="Certified Expert Technician"
                 className="w-full h-auto object-cover transition-transform duration-700 group-hover:scale-110"
                 referrerPolicy="no-referrer"
+                onError={(e) => {
+                  const target = e.currentTarget;
+                  if (!target.src.includes('unsplash')) {
+                    target.src = getFallbackImageUrl('technician');
+                  }
+                }}
               />
             </div>
             <div className="absolute -top-10 -right-10 w-64 h-64 bg-brand/10 rounded-full blur-3xl" />

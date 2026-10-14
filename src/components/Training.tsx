@@ -2,7 +2,7 @@ import { motion } from 'motion/react';
 import { GraduationCap, CheckCircle2, Users, ArrowRight } from 'lucide-react';
 import { useLanguage } from '../context/LanguageContext';
 import { translations } from '../utils/translations';
-import { getProxiedImageUrl } from '../utils/imageProxy';
+import { getProxiedImageUrl, getFallbackImageUrl } from '../utils/imageProxy';
 
 export default function Training() {
   const { language } = useLanguage();
@@ -80,6 +80,12 @@ export default function Training() {
                   alt="Professional Beauty Training 1"
                   className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
                   referrerPolicy="no-referrer"
+                  onError={(e) => {
+                    const target = e.currentTarget;
+                    if (!target.src.includes('unsplash')) {
+                      target.src = getFallbackImageUrl('gallery', 0);
+                    }
+                  }}
                 />
               </div>
               <div className="rounded-[40px] overflow-hidden shadow-2xl border-8 border-white dark:border-gray-900 group aspect-square">
@@ -88,6 +94,12 @@ export default function Training() {
                   alt="Professional Beauty Training 2"
                   className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
                   referrerPolicy="no-referrer"
+                  onError={(e) => {
+                    const target = e.currentTarget;
+                    if (!target.src.includes('unsplash')) {
+                      target.src = getFallbackImageUrl('gallery', 1);
+                    }
+                  }}
                 />
               </div>
             </div>

@@ -3,7 +3,7 @@ import { Menu, X, ArrowRight, Globe } from 'lucide-react';
 import { useState } from 'react';
 import { useLanguage } from '../context/LanguageContext';
 import { translations } from '../utils/translations';
-import { getProxiedImageUrl } from '../utils/imageProxy';
+import { getProxiedImageUrl, getFallbackImageUrl } from '../utils/imageProxy';
 
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
@@ -28,8 +28,14 @@ export default function Navbar() {
             <img 
               src={getProxiedImageUrl("https://i.ibb.co/KjjmHHHC/lash-brows-service-logo-LE-auto-x4.jpg")} 
               alt="Lash & Brows Logo" 
-              className="h-8 md:h-10 w-auto rounded-full"
+              className="h-8 md:h-10 w-auto rounded-full object-cover"
               referrerPolicy="no-referrer"
+              onError={(e) => {
+                const target = e.currentTarget;
+                if (!target.src.includes('unsplash')) {
+                  target.src = getFallbackImageUrl('logo');
+                }
+              }}
             />
             <span className="text-lg md:text-xl font-black tracking-tighter text-brand">
               LASH&BROWS

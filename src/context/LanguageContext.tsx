@@ -13,7 +13,7 @@ const LanguageContext = createContext<LanguageContextProps | undefined>(undefine
 export function LanguageProvider({ children }: { children: React.ReactNode }) {
   const [language, setLanguage] = useState<Language>(() => {
     const saved = localStorage.getItem('language');
-    return (saved === 'fr' || saved === 'en') ? saved : 'en';
+    return (saved === 'fr' || saved === 'en') ? saved : 'fr';
   });
 
   useEffect(() => {

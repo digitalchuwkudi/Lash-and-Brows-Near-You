@@ -201,15 +201,15 @@ export default function MetaPixelConfigurator() {
                       <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
                         <div className="bg-brand/5 rounded-xl p-4 border border-brand/10">
                           <p className="text-xs font-black text-brand uppercase tracking-wider mb-1">WhatsApp Bookings</p>
-                          <p className="text-xs font-bold text-gray-500 dark:text-gray-400">Triggers standard "Lead" event when clients click to book via WhatsApp.</p>
+                          <p className="text-xs font-bold text-gray-500 dark:text-gray-400">Fires "Lead" ONLY after 100% field validation and WhatsApp launch.</p>
                         </div>
                         <div className="bg-brand/5 rounded-xl p-4 border border-brand/10">
                           <p className="text-xs font-black text-brand uppercase tracking-wider mb-1">Manual Forms</p>
-                          <p className="text-xs font-bold text-gray-500 dark:text-gray-400">Triggers standard "Lead" event when clients submit manual booking requests.</p>
+                          <p className="text-xs font-bold text-gray-500 dark:text-gray-400">Fires "Lead" ONLY on confirmed HTTP 200 OK server responses.</p>
                         </div>
                         <div className="bg-brand/5 rounded-xl p-4 border border-brand/10">
-                          <p className="text-xs font-black text-brand uppercase tracking-wider mb-1">Setmore Schedulers</p>
-                          <p className="text-xs font-bold text-gray-500 dark:text-gray-400">Triggers standard "Lead" event when clients choose to book on Setmore scheduler.</p>
+                          <p className="text-xs font-black text-brand uppercase tracking-wider mb-1">Navigation Clicks</p>
+                          <p className="text-xs font-bold text-gray-500 dark:text-gray-400">Uses "trackCustom" (InitiateBooking) to prevent ghost lead counts.</p>
                         </div>
                       </div>
                     </div>

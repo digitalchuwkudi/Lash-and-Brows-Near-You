@@ -140,17 +140,26 @@ export function trackPageView(): void {
  * Tracks a standard Lead event, which is vital for Lead Objective Ad Campaigns.
  * Useful for when a form is submitted, a messaging button is clicked, or an external booking link is clicked.
  * 
- * @param contentName Name of the specific conversion action (e.g. "WhatsApp Booking", "Manual Booking Form", "Setmore Booking")
+ * @param contentName Name of the specific conversion action (e.g. "WhatsApp Booking", "Manual Booking Form")
  * @param service The name of the beauty service selected by the user
  * @param value Optional currency value associated with the lead
+ * @param currency Currency code (default 'USD')
+ * @param leadType Differentiator tag: 'booking' or 'contact'
  */
-export function trackLead(contentName: string, service?: string, value: number = 0, currency: string = 'USD'): void {
+export function trackLead(
+  contentName: string, 
+  service?: string, 
+  value: number = 0, 
+  currency: string = 'USD',
+  leadType: 'booking' | 'contact' = 'booking'
+): void {
   const pixelId = getMetaPixelId();
   const testCode = getTestEventCode();
   
   const eventData: Record<string, any> = {
     content_name: contentName,
-    content_category: 'Beauty Service',
+    content_category: leadType === 'booking' ? 'Booking Lead' : 'Contact Lead',
+    lead_type: leadType,
     value: value,
     currency: currency,
   };
@@ -174,6 +183,31 @@ export function trackLead(contentName: string, service?: string, value: number =
       data: eventData,
       testCode: testCode || 'None'
     });
+  }
+}
+
+/**
+ * Tracks Meta standard 'Contact' event.
+ * Distinct from 'Lead', this tracks general user inquiries, phone calls, or direct contact links.
+ */
+export function trackContact(contentName: string, method?: string): void {
+  const testCode = getTestEventCode();
+
+  const eventData: Record<string, any> = {
+    content_name: contentName,
+    content_category: 'General Inquiry',
+    contact_method: method || 'Direct',
+  };
+
+  if (isPixelInitialized()) {
+    if (testCode) {
+      window.fbq('track', 'Contact', eventData, { test_event_code: testCode });
+    } else {
+      window.fbq('track', 'Contact', eventData);
+    }
+    console.log(`📞 [Meta Pixel] Tracked standard event: Contact`, eventData);
+  } else {
+    console.log(`📞 [Meta Pixel Simulator] Contact event triggered:`, eventData);
   }
 }
 

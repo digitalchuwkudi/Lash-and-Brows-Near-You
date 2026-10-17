@@ -6,7 +6,7 @@ import { MessageCircle, Calendar, User, Phone, Clock, Send, Sparkles, Mail, Arro
 import { format } from 'date-fns';
 import { useLanguage } from '../context/LanguageContext';
 import { translations } from '../utils/translations';
-import { trackLead } from '../utils/metaPixel';
+import { trackLead, trackCustom } from '../utils/metaPixel';
 
 export default function BookingForm() {
   const { language } = useLanguage();
@@ -21,6 +21,7 @@ export default function BookingForm() {
     time: '',
   });
 
+  const [waErrors, setWaErrors] = useState<string[]>([]);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitSuccess, setSubmitSuccess] = useState(false);
   const [submitError, setSubmitError] = useState(false);
@@ -74,17 +75,39 @@ export default function BookingForm() {
 
   const handleWhatsAppSubmit = (e: React.FormEvent) => {
     e.preventDefault();
+    setWaErrors([]);
+
+    const errors: string[] = [];
+    if (!formData.name.trim()) {
+      errors.push(language === 'en' ? 'Please enter your full name.' : 'Veuillez entrer votre nom complet.');
+    }
+    if (!formData.phone.trim() || formData.phone.trim().replace(/\D/g, '').length < 8) {
+      errors.push(language === 'en' ? 'Please enter a valid WhatsApp phone number.' : 'Veuillez entrer un numéro WhatsApp valide.');
+    }
+    if (!formData.service) {
+      errors.push(language === 'en' ? 'Please select a beauty service.' : 'Veuillez sélectionner un soin de beauté.');
+    }
+    if (!formData.time) {
+      errors.push(language === 'en' ? 'Please select a preferred time.' : 'Veuillez choisir une heure.');
+    }
+
+    if (errors.length > 0) {
+      setWaErrors(errors);
+      return; // STOP! Validation failed -> DO NOT fire Meta Lead event!
+    }
+
+    // Validation passed! Build message
     const dateStr = startDate ? format(startDate, 'PPPP') : 'Not selected';
     const message = `Hello! I'd like to book an appointment:
-Name: ${formData.name}
-Phone: ${formData.phone}
+Name: ${formData.name.trim()}
+Phone: ${formData.phone.trim()}
 Service: ${formData.service}
 Date: ${dateStr}
 Time: ${formData.time}
     `;
 
-    // Track Meta Pixel Lead standard event
-    trackLead('WhatsApp Booking', formData.service);
+    // Fire Meta Pixel Lead standard event ONLY upon successful validation & action launch
+    trackLead('WhatsApp Booking Confirmed', formData.service);
 
     const whatsappUrl = `https://wa.me/2290190083461?text=${encodeURIComponent(message)}`;
     window.open(whatsappUrl, '_blank');
@@ -98,10 +121,19 @@ Time: ${formData.time}
 
     const form = e.currentTarget;
     const data = new FormData(form);
-    const serviceName = data.get('service') as string;
+    
+    const name = (data.get('name') as string || '').trim();
+    const phone = (data.get('phone') as string || '').trim();
+    const email = (data.get('email') as string || '').trim();
+    const serviceName = (data.get('service') as string || '').trim();
+    const time = (data.get('time') as string || '').trim();
 
-    // Track Meta Pixel Lead standard event
-    trackLead('Manual Booking Form', serviceName);
+    // Frontend validation check
+    if (!name || !phone || !email || !serviceName || !time) {
+      setSubmitError(true);
+      setIsSubmitting(false);
+      return; // STOP! Validation failed -> DO NOT fire Meta Lead event!
+    }
 
     try {
       const response = await fetch('https://formspree.io/f/mreolloq', {
@@ -113,6 +145,8 @@ Time: ${formData.time}
       });
 
       if (response.ok) {
+        // Track Meta Pixel Lead ONLY upon confirmed HTTP 200 OK server response!
+        trackLead('Manual Booking Form Submitted', serviceName);
         setSubmitSuccess(true);
         form.reset();
       } else {
@@ -241,6 +275,20 @@ Time: ${formData.time}
                   />
                 </div>
               </div>
+
+              {waErrors.length > 0 && (
+                <div className="bg-red-500/10 text-red-500 p-4 rounded-2xl flex flex-col text-xs font-bold gap-1 border border-red-500/20 mb-4">
+                  <div className="flex items-center gap-2">
+                    <AlertCircle size={16} className="shrink-0" />
+                    <span>{language === 'en' ? 'Please complete all required fields:' : 'Veuillez remplir tous les champs requis :'}</span>
+                  </div>
+                  <ul className="list-disc list-inside ml-5 space-y-0.5 font-medium">
+                    {waErrors.map((err, idx) => (
+                      <li key={idx}>{err}</li>
+                    ))}
+                  </ul>
+                </div>
+              )}
 
               <div className="mt-auto">
                 <button
@@ -430,7 +478,10 @@ Time: ${formData.time}
                 href="https://lashandbrowsnearyou.setmore.com/" 
                 target="_blank" 
                 rel="noopener noreferrer" 
-                onClick={() => trackLead('Setmore Booking Link')}
+                onClick={() => {
+                  trackCustom('InitiateBooking', { method: 'Setmore Link Click' });
+                  trackLead('Setmore Booking Redirect', 'Online Booking', 0, 'USD', 'booking');
+                }}
                 className="w-full bg-brand text-white py-5 rounded-2xl font-black text-lg transition-all transform hover:-translate-y-1 hover:scale-105 shadow-xl shadow-brand/20 flex items-center justify-center hover:opacity-90"
               >
                 <span>{t.booking.btnSetmore}</span>

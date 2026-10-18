@@ -1,0 +1,30 @@
+# robots.txt for Lash and Brows Near You (Cotonou, Benin)
+User-agent: *
+Allow: /
+
+# Explicitly welcome AI Search Engines and LLM Assistants (Generative Engine Optimization)
+User-agent: GPTBot
+Allow: /
+
+User-agent: ChatGPT-User
+Allow: /
+
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: Claude-Web
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: Google-Extended
+Allow: /
+
+User-agent: Meta-ExternalAgent
+Allow: /
+
+User-agent: Applebot-Extended
+Allow: /
+
+Sitemap: https://lash-and-brows-near-you.pages.dev/sitemap.xml

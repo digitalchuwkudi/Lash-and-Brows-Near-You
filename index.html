@@ -3,8 +3,9 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    
+    <!-- Make window.fetch writable and suppress Chrome extension runtime noise -->
     <script>
-      // Make window.fetch writable to prevent extension setter TypeError crashes
       try {
         if (window.fetch) {
           const originalFetch = window.fetch;
@@ -15,11 +16,8 @@
             enumerable: true
           });
         }
-      } catch (e) {
-        // Safe fallback
-      }
+      } catch (e) {}
 
-      // Catch and completely silence third-party/chrome-extension exceptions in the browser
       window.addEventListener('error', function(event) {
         if (event.filename && (event.filename.indexOf('chrome-extension://') !== -1 || event.filename.indexOf('libs/requests.js') !== -1)) {
           event.preventDefault();
@@ -27,17 +25,190 @@
         }
       }, true);
     </script>
+
+    <!-- Primary Title & Description -->
+    <title>Lash and Brows Near You | Service à Domicile Privé & Personnalisé à Cotonou</title>
+    <meta name="description" content="Salon de Beauté Privé à Domicile à Cotonou — Choisissez 2 Services et Obtenez 15% de Réduction (hors Épilation, Manucure et Pédicure). Extensions de cils, microblading, lip blush chez vous." />
+    <meta name="keywords" content="Lash extensions Cotonou, extensions de cils Cotonou, microblading Cotonou, microshading Cotonou, lip blush Cotonou, manucure Cotonou, pedicure Cotonou, salon de beaute a domicile Cotonou, estetienne domicile Benin" />
+    <meta name="author" content="Lash and Brows Near You" />
+    <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
+
+    <!-- Canonical & Language Alternates -->
+    <link rel="canonical" href="https://lash-and-brows-near-you.pages.dev" />
+    <link rel="alternate" hreflang="fr" href="https://lash-and-brows-near-you.pages.dev/" />
+    <link rel="alternate" hreflang="en" href="https://lash-and-brows-near-you.pages.dev/?lang=en" />
+    <link rel="alternate" hreflang="x-default" href="https://lash-and-brows-near-you.pages.dev/" />
+
+    <!-- Geo Location Metadata (Cotonou, Benin) -->
+    <meta name="geo.region" content="BJ-OU" />
+    <meta name="geo.placename" content="Cotonou" />
+    <meta name="geo.position" content="6.3654;2.4183" />
+    <meta name="ICBM" content="6.3654, 2.4183" />
+
+    <!-- Favicon & Touch Icons -->
     <link rel="icon" type="image/jpeg" href="https://i.ibb.co/KjjmHHHC/lash-brows-service-logo-LE-auto-x4.jpg" />
+    <link rel="apple-touch-icon" href="https://i.ibb.co/KjjmHHHC/lash-brows-service-logo-LE-auto-x4.jpg" />
+
+    <!-- Google Fonts Preconnect -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <title>Lash and Brows Near You | Service à Domicile Privé & Personnalisé à Cotonou</title>
-    <meta name="description" content="Des Soins Esthétiques Impeccables, Livrés Directement à Votre Porte à Cotonou. Évitez les salons trop chers, les embouteillages et les files d'attente interminables." />
-    <meta property="og:title" content="Lash and Brows Near You - Service à Domicile Privé & Personnalisé à Cotonou" />
-    <meta property="og:description" content="Soins Esthétiques Impeccables, Livrés Directement à Votre Porte à Cotonou." />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Montserrat:wght@700;800;900&display=swap" rel="stylesheet">
+
+    <!-- OpenGraph Social Share Cards (Facebook, WhatsApp, LinkedIn, iMessage) -->
+    <meta property="og:type" content="business.business" />
+    <meta property="og:site_name" content="Lash and Brows Near You" />
+    <meta property="og:title" content="Lash and Brows Near You | Service à Domicile Privé & Personnalisé à Cotonou" />
+    <meta property="og:description" content="Salon de Beauté Privé à Domicile à Cotonou — Choisissez 2 Services et Obtenez 15% de Réduction (hors Épilation, Manucure et Pédicure). Soins de cils, sourcils et esthétique livrés chez vous." />
+    <meta property="og:url" content="https://lash-and-brows-near-you.pages.dev" />
+    <meta property="og:image" content="https://i.ibb.co/Z6kL1HDx/glamourous-african-lady-with-lash-extension.jpg" />
+    <meta property="og:image:secure_url" content="https://i.ibb.co/Z6kL1HDx/glamourous-african-lady-with-lash-extension.jpg" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content="Service de Beauté et Soins Esthétiques à Domicile à Cotonou" />
+    <meta property="og:locale" content="fr_BJ" />
+    <meta property="og:locale:alternate" content="en_US" />
+
+    <!-- Twitter / X Cards -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Lash and Brows Near You | Service à Domicile Privé & Personnalisé à Cotonou" />
+    <meta name="twitter:description" content="Salon de Beauté Privé à Domicile à Cotonou — Choisissez 2 Services et Obtenez 15% de Réduction (hors Épilation, Manucure et Pédicure)." />
+    <meta name="twitter:image" content="https://i.ibb.co/Z6kL1HDx/glamourous-african-lady-with-lash-extension.jpg" />
+
+    <!-- Schema.org JSON-LD Structured Data (LocalBusiness / HealthAndBeautyBusiness + Offer + FAQ) -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@graph": [
+        {
+          "@type": ["BeautySalon", "HealthAndBeautyBusiness"],
+          "@id": "https://lash-and-brows-near-you.pages.dev/#business",
+          "name": "Lash and Brows Near You",
+          "url": "https://lash-and-brows-near-you.pages.dev",
+          "category": "Aesthetics & Beauty Salon",
+          "additionalType": ["https://en.wikipedia.org/wiki/Aesthetician", "https://en.wikipedia.org/wiki/Beauty_salon"],
+          "knowsAbout": [
+            "Aesthetic Care",
+            "Aesthetics & Beauty",
+            "Eyelash Extensions",
+            "Microblading",
+            "Microshading",
+            "Lip Blush",
+            "Semi-Permanent Makeup",
+            "Brow Lamination",
+            "Manicure & Pedicure",
+            "Waxing"
+          ],
+          "logo": "https://i.ibb.co/KjjmHHHC/lash-brows-service-logo-LE-auto-x4.jpg",
+          "image": "https://i.ibb.co/Z6kL1HDx/glamourous-african-lady-with-lash-extension.jpg",
+          "description": "Private & Personalized At-Home Beauty Salon Service in Cotonou, Benin. Eyelash extensions, microblading, microshading, lip blush, waxing, and manicures/pedicures delivered at home.",
+          "telephone": "+2290161205830",
+          "priceRange": "$$",
+          "currenciesAccepted": "XOF, NGN, USD",
+          "paymentAccepted": "Cash, Mobile Money, Bank Transfer",
+          "address": {
+            "@type": "PostalAddress",
+            "addressLocality": "Cotonou",
+            "addressRegion": "Littoral",
+            "addressCountry": "BJ"
+          },
+          "geo": {
+            "@type": "GeoCoordinates",
+            "latitude": 6.3654,
+            "longitude": 2.4183
+          },
+          "areaServed": [
+            {
+              "@type": "City",
+              "name": "Cotonou"
+            },
+            {
+              "@type": "Country",
+              "name": "Benin"
+            }
+          ],
+          "openingHoursSpecification": [
+            {
+              "@type": "OpeningHoursSpecification",
+              "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"],
+              "opens": "08:00",
+              "closes": "20:00"
+            }
+          ],
+          "makesOffer": [
+            {
+              "@type": "Offer",
+              "name": "15% Off Combo Beauty Special",
+              "description": "Choose any 2 beauty services and get 15% discount (excludes standalone Waxing, Manicure, and Pedicure).",
+              "priceCurrency": "XOF",
+              "availability": "https://schema.org/InStock"
+            }
+          ],
+          "hasOfferCatalog": {
+            "@type": "OfferCatalog",
+            "name": "Beauty Services Menu",
+            "itemListElement": [
+              {
+                "@type": "OfferCatalog",
+                "name": "Eyelash Extensions",
+                "itemListElement": [
+                  { "@type": "Service", "name": "Classic Lash Extension" },
+                  { "@type": "Service", "name": "2D / Hybrid Lash Extension" },
+                  { "@type": "Service", "name": "3D / Volume Lash Extension" },
+                  { "@type": "Service", "name": "4D / Mega Volume Lash Extension" }
+                ]
+              },
+              {
+                "@type": "OfferCatalog",
+                "name": "Semi-Permanent Brows & Lips",
+                "itemListElement": [
+                  { "@type": "Service", "name": "Microblading" },
+                  { "@type": "Service", "name": "Microshading (Ombré)" },
+                  { "@type": "Service", "name": "Lip Blush" },
+                  { "@type": "Service", "name": "Brow Lamination & Tint" }
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "@type": "FAQPage",
+          "@id": "https://lash-and-brows-near-you.pages.dev/#faq",
+          "mainEntity": [
+            {
+              "@type": "Question",
+              "name": "Comment réserver un soin esthétique à domicile à Cotonou ?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Vous pouvez réserver directement via notre formulaire sur le site web ou par WhatsApp au +229 01 90 08 34 61. Choisissez vos soins, votre date et votre heure préférée."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "Quelle est l'offre spéciale sur les services combinés ?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Obtenez 15% de réduction lorsque vous choisissez 2 services combinés (offre valable sur tous les soins sauf Épilation, Manucure et Pédicure seuls)."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "Quelles sont les mesures d'hygiène appliquées ?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Nous appliquons des normes d'hygiène strictes de niveau médical avec des outils stériles à usage unique pour chaque cliente à domicile."
+              }
+            }
+          ]
+        }
+      ]
+    }
+    </script>
+  </head>
   <body>
-    <noscript><img height="1" width="1" style="display:none" src="https://www.facebook.com/tr?id=1356255929677434&ev=PageView&noscript=1" /></noscript>
+    <noscript>
+      <img height="1" width="1" style="display:none" src="https://www.facebook.com/tr?id=1356255929677434&ev=PageView&noscript=1" alt="Meta Pixel" />
+    </noscript>
     <div id="root"></div>
     <script type="module" src="/src/main.tsx"></script>
   </body>
 </html>
-

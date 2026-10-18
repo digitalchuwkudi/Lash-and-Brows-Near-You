@@ -8,6 +8,41 @@ export default function Hero() {
   const { language } = useLanguage();
   const t = translations[language];
 
+  const renderHeading = (text: string) => {
+    const parts = text.split('15%');
+    if (parts.length < 2) return text;
+    return (
+      <>
+        {parts[0]}
+        <span className="relative inline-block text-white px-1">
+          15%
+          <svg
+            className="absolute -bottom-2 left-0 w-full h-3 text-white overflow-visible"
+            viewBox="0 0 100 20"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+            preserveAspectRatio="none"
+          >
+            <path
+              d="M2 13C28 5 68 17 98 9"
+              stroke="currentColor"
+              strokeWidth="4"
+              strokeLinecap="round"
+            />
+            <path
+              d="M6 17C35 11 75 20 94 14"
+              stroke="currentColor"
+              strokeWidth="2"
+              strokeLinecap="round"
+              opacity="0.9"
+            />
+          </svg>
+        </span>
+        {parts[1]}
+      </>
+    );
+  };
+
   return (
     <section className="flex flex-col w-full bg-white dark:bg-gray-950 pt-20">
       {/* Video Section (Top) */}
@@ -38,55 +73,53 @@ export default function Hero() {
             </span>
           </div>
 
-          <h1 className="text-4xl sm:text-5xl md:text-6xl font-black leading-tight mb-6 text-gray-900 dark:text-white tracking-tighter max-w-3xl mx-auto">
-            <span className="text-orange-500">{t.hero.heading}</span>
+          <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-black leading-tight mb-6 text-orange-500 tracking-tighter max-w-4xl mx-auto">
+            {renderHeading(t.hero.heading)}
           </h1>
 
           <p className="text-base md:text-lg text-gray-600 dark:text-gray-300 mb-10 leading-relaxed max-w-2xl mx-auto font-medium">
             {t.hero.subheading}
           </p>
 
-          <div className="flex flex-col items-center space-y-8">
-            <div className="relative group">
-              <a
-                href="#book"
-                className="inline-flex items-center justify-center bg-brand text-white px-10 py-5 rounded-2xl font-black text-lg transition-all transform hover:-translate-y-1 hover:scale-105 shadow-xl shadow-brand/20 hover:opacity-90"
-              >
-                <span>{t.hero.cta}</span>
-                <ArrowRight className="ml-2" size={24} />
-              </a>
-              <p className="absolute -bottom-7 left-0 right-0 text-center text-xs font-bold text-gray-500 dark:text-gray-400 uppercase tracking-widest">
-                {t.hero.ctaTagline}
-              </p>
-            </div>
+          <div className="flex flex-col items-center space-y-4">
+            <a
+              href="#book"
+              className="inline-flex items-center justify-center bg-brand text-white px-10 py-5 rounded-2xl font-black text-lg transition-all transform hover:-translate-y-1 hover:scale-105 shadow-xl shadow-brand/20 hover:opacity-90"
+            >
+              <span>{t.hero.cta}</span>
+              <ArrowRight className="ml-2" size={24} />
+            </a>
+            <p className="text-xs font-bold text-gray-500 dark:text-gray-400 max-w-md text-center leading-normal px-2">
+              ✨ {t.hero.ctaTagline}
+            </p>
+          </div>
 
-            <div className="flex items-center space-x-4 pt-6">
-              <div className="flex -space-x-3">
-                {[
-                  "https://i.ibb.co/Z6kL1HDx/glamourous-african-lady-with-lash-extension.jpg",
-                  "https://i.ibb.co/8LPq6CXy/european-microshading-and-lash-extension.jpg",
-                  "https://i.ibb.co/XMP64F4/microshading-done-on-lady.jpg",
-                  "https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=128&h=128&fit=crop"
-                ].map((src, i) => (
-                  <img
-                    key={i}
-                    src={getProxiedImageUrl(src)}
-                    alt="Client"
-                    className="w-12 h-12 rounded-full border-2 border-white dark:border-gray-900 object-cover shadow-sm"
-                    referrerPolicy="no-referrer"
-                    onError={(e) => {
-                      const target = e.currentTarget;
-                      if (!target.src.includes('unsplash')) {
-                        target.src = getFallbackImageUrl('avatar', i);
-                      }
-                    }}
-                  />
-                ))}
-              </div>
-              <div className="text-left text-sm">
-                <p className="font-black text-gray-900 dark:text-white">{t.hero.clientCount}</p>
-                <p className="text-gray-600 dark:text-gray-400 font-medium">{t.hero.clientTrusted}</p>
-              </div>
+          <div className="flex items-center space-x-4 pt-6">
+            <div className="flex -space-x-3">
+              {[
+                "https://i.ibb.co/Z6kL1HDx/glamourous-african-lady-with-lash-extension.jpg",
+                "https://i.ibb.co/8LPq6CXy/european-microshading-and-lash-extension.jpg",
+                "https://i.ibb.co/XMP64F4/microshading-done-on-lady.jpg",
+                "https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=128&h=128&fit=crop"
+              ].map((src, i) => (
+                <img
+                  key={i}
+                  src={getProxiedImageUrl(src)}
+                  alt="Client"
+                  className="w-12 h-12 rounded-full border-2 border-white dark:border-gray-900 object-cover shadow-sm"
+                  referrerPolicy="no-referrer"
+                  onError={(e) => {
+                    const target = e.currentTarget;
+                    if (!target.src.includes('unsplash')) {
+                      target.src = getFallbackImageUrl('avatar', i);
+                    }
+                  }}
+                />
+              ))}
+            </div>
+            <div className="text-left text-sm">
+              <p className="font-black text-gray-900 dark:text-white">{t.hero.clientCount}</p>
+              <p className="text-gray-600 dark:text-gray-400 font-medium">{t.hero.clientTrusted}</p>
             </div>
           </div>
 

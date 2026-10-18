@@ -13,8 +13,8 @@ export default function Hero() {
     if (parts.length < 2) return text;
     return (
       <>
-        {parts[0]}
-        <span className="relative inline-block text-white px-1">
+        {parts[0].trimEnd()}{' '}
+        <span className="relative inline-block text-white mx-1.5 px-1">
           15%
           <svg
             className="absolute -bottom-2 left-0 w-full h-3 text-white overflow-visible"
@@ -37,8 +37,8 @@ export default function Hero() {
               opacity="0.9"
             />
           </svg>
-        </span>
-        {parts[1]}
+        </span>{' '}
+        {parts[1].trimStart()}
       </>
     );
   };
